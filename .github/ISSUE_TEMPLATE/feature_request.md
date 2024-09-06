@@ -1,7 +1,7 @@
 ---
 name: Feature request
-about: Suggest an idea for this project
-title: ''
+about: 기능 추가 시 사용하는 템플릿
+title: "[Feat] "
 labels: "✨ Feature"
 assignees: ''
 
