@@ -6,23 +6,25 @@ on:
       - front
 
 jobs:
-  test:
+  chromatic-deploy:
     runs-on: ubuntu-latest
-
+    defaults:
+      run:
+        working-directory: ./Front
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          # sparse checkout은 특정 디렉토리만 체크아웃하는 옵션
           sparse-checkout: |
             ./Front
 
-      - name: Install dependencies
-        run: |
-          cd Front
-          npm install
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.16.0"
 
-      - name: Run Chromatic
-        run: |
-          cd Front
-          npx chromatic --project-token=${{ secrets.CHROMATIC_PROJECT_TOKEN }} --exit-zero-on-changes --auto-accept-changes
+      - name: Install dependency
+        run: npm install
+
+      - name: start Chromatic
+        run: npx chromatic --project-token=${{ secrets.CHROMATIC_PROJECT_TOKEN }} --token=${{ secrets.GITHUB_TOKEN }} --exit-zero-on-changes --auto-accept-changes
