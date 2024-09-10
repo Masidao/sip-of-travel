@@ -16,9 +16,11 @@ jobs:
           # sparse checkout은 특정 디렉토리만 체크아웃하는 옵션
           sparse-checkout: |
             ./Front
-
+            
       - name: Install dependencies
-        run: npm install
+        run: |
+          cd Front
+          npm install
 
       - name: Run Chromatic
         uses: chromaui/action@latest
