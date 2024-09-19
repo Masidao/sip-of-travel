@@ -4,13 +4,13 @@ import { useNavigate } from "react-router";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
-  // const handleLogin = () => navigate("/home");
+  const handleLogin = () => navigate("/home");
 
   return (
     <S.Container>
       <S.Wrapper>
         <S.Title>! (^~^) !</S.Title>
-        <S.Button>
+        <S.Button onClick={handleLogin}>
           <img src="kakao_login.png" />
         </S.Button>
       </S.Wrapper>
