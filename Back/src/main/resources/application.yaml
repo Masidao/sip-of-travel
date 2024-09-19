@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: travel
+  datasource:
+    url: jdbc:mysql://localhost:3306/masida
+    username: masida_dev
+    password: qwer1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  sql:
+    init:
+      mode: always
+
