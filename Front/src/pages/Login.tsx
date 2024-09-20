@@ -11,7 +11,7 @@ const Login: React.FC = () => {
       <S.Wrapper>
         <S.Title>! (^~^) !</S.Title>
         <S.Button onClick={handleLogin}>
-          <img src="kakao_login.png" />
+          <img src="kakao_login.png" alt="kakao_login"/>
         </S.Button>
       </S.Wrapper>
     </S.Container>

@@ -22,7 +22,8 @@ export const Title = styled.div`
   font-size: 80px;
 `;
 
-export const Button = styled.div`
+export const Button = styled.button`
   border: none;
-  cursor: grab;
+  background: unset;
+  cursor: pointer;
 `;
