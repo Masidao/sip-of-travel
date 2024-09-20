@@ -66,7 +66,7 @@ export const Button = styled.button`
   }
 `;
 
-export const Message = styled.p`
+export const Message = styled.div`
   font-size: 1.5rem;
   text-align: center;
   color: #858585;

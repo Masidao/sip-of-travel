@@ -1,25 +1,22 @@
 import React from "react";
 import * as S from "../styles/home.style";
+import schedulesData from "../../data/schedules.json";
 import citiesList from "../../data/citiesList.json";
 
 const user = "다오";
 
-const schedules = [
-  {
-    id: 1,
-    city_id: 1,
-    start_date: "2024-09-15",
-    end_date: "2023-09-16",
-  },
-  {
-    id: 2,
-    city_id: 6,
-    start_date: "2024-09-15",
-    end_date: "2023-09-16",
-  },
-];
+interface Schedule {
+  id: number;
+  city_id: number;
+  start_date: string;
+  end_date: string;
+}
 
-const Home: React.FC = () => {
+interface HomeProps {
+  schedules: Schedule[];
+}
+
+const Home: React.FC<HomeProps> = ({ schedules = schedulesData }) => {
   const getCityName = (city_id: number): string => {
     const city = citiesList.find((city) => city.id === city_id);
     return city ? city.name : "국내";
