@@ -1,3 +1,12 @@
+DROP TABLE IF EXISTS daily_schedule_details;
+DROP TABLE IF EXISTS daily_schedules;
+DROP TABLE IF EXISTS place_groups_places;
+DROP TABLE IF EXISTS place_groups;
+DROP TABLE IF EXISTS travel_plans;
+DROP TABLE IF EXISTS places;
+DROP TABLE IF EXISTS cities;
+DROP TABLE IF EXISTS members;
+
 CREATE TABLE members (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nickname VARCHAR(50) NOT NULL,
