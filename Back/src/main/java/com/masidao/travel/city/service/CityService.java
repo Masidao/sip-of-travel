@@ -16,7 +16,10 @@ public class CityService {
     public List<CityListResponse> getCities() {
         return cityRepository.findAllProjectedBy()
                 .stream()
-                .map(cityProjection -> new CityListResponse(cityProjection.getId(), cityProjection.getName()))
+                .map(cityProjection -> CityListResponse.builder()
+                        .id(cityProjection.getId())
+                        .name(cityProjection.getName())
+                        .build())
                 .toList();
     }
 }
