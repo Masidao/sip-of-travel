@@ -2,11 +2,14 @@ package com.masidao.travel.travelPlan.service;
 
 import com.masidao.travel.travelPlan.dto.TravelPlanAddRequest;
 import com.masidao.travel.travelPlan.dto.TravelPlanAddResponse;
+import com.masidao.travel.travelPlan.dto.TravelPlanResponse;
 import com.masidao.travel.travelPlan.entity.TravelPlan;
 import com.masidao.travel.travelPlan.exception.InvalidDateRangeException;
 import com.masidao.travel.travelPlan.repository.TravelPlanRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -29,5 +32,17 @@ public class TravelPlanService {
         return TravelPlanAddResponse.builder()
                 .id(savedTravelPlan.getId())
                 .build();
+    }
+
+    public List<TravelPlanResponse> getTravelPlans(Long memberId) {
+        List<TravelPlan> travelPlans = travelPlanRepository.findByMemberId(memberId);
+        return travelPlans.stream()
+                .map(travelPlan -> TravelPlanResponse.builder()
+                        .id(travelPlan.getId())
+                        .cityId(travelPlan.getCityId())
+                        .startDate(travelPlan.getStartDate())
+                        .endDate(travelPlan.getEndDate())
+                        .build())
+                .toList();
     }
 }
