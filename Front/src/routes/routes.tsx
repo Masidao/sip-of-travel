@@ -4,7 +4,7 @@ import Login from "../pages/Login";
 import schedules from "../../data/schedules.json";
 import Cities from "../pages/Cities";
 
-const router = createBrowserRouter([
+const routes = createBrowserRouter([
   {
     path: "/",
     element: <Login />,
@@ -57,4 +57,4 @@ const router = createBrowserRouter([
   // },
 ]);
 
-export default router;
+export default routes;

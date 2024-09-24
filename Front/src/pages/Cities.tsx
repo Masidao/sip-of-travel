@@ -1,6 +1,6 @@
 import React from "react";
 import * as S from "../styles/cities.style";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 const Cities: React.FC = () => {
   const navigate = useNavigate();
