@@ -3,6 +3,7 @@ package com.masidao.travel.travelPlan.service;
 import com.masidao.travel.travelPlan.dto.TravelPlanAddRequest;
 import com.masidao.travel.travelPlan.dto.TravelPlanAddResponse;
 import com.masidao.travel.travelPlan.entity.TravelPlan;
+import com.masidao.travel.travelPlan.exception.InvalidDateRangeException;
 import com.masidao.travel.travelPlan.repository.TravelPlanRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ public class TravelPlanService {
 
     public TravelPlanAddResponse addTravelPlan(TravelPlanAddRequest request) {
         if (request.startDate().isAfter(request.endDate())) {
-            throw new IllegalArgumentException("시작 날짜가 종료 날짜보다 이를 수 없습니다.");
+            throw new InvalidDateRangeException();
         }
 
         TravelPlan travelPlan = TravelPlan.builder()
