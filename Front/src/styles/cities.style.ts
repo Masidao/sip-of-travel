@@ -1,7 +1,7 @@
 import styled from "styled-components";
+import SearchIcon from "../assets/SearchIcon";
 
 export const Container = styled.div`
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,6 +12,27 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
   width: 100%;
   max-width: 500px;
+`;
+
+export const SearchBox = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+`;
+
+export const SearchInput = styled.input`
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+`;
+
+export const StyledSearchIcon = styled(SearchIcon)`
+  padding-right: 16px;
 `;
 
 export const ScrollArea = styled.div`
@@ -38,6 +59,7 @@ export const Image = styled.img`
 
 export const Title = styled.div`
   display: flex;
+  font-weight: 500;
   font-size: 1.2rem;
   text-align: center;
 `;

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -38,6 +37,7 @@ export const ScheduleTitle = styled.div`
   font-weight: 500;
   font-size: 1.2rem;
   padding-bottom: 10px;
+  color: black;
 `;
 
 export const ScheduleDate = styled.div`

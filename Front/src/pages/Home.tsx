@@ -33,7 +33,7 @@ const Home: React.FC<HomeProps> = ({ schedules }) => {
           {schedules.length > 0 ? (
             schedules.map(({ id, city_id, start_date, end_date }) => (
               <S.ScheduleItem key={id}>
-                <Link to={`/travel_plans/${id}`}>
+                <Link to={`/travel_plans/${id}`} style={{ textDecoration: "none" }}>
                   <S.ScheduleTitle>{getCityName(city_id)} 여행</S.ScheduleTitle>
                 </Link>
                 <S.ScheduleDate>
