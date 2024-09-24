@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
-  const handleLogin = () => navigate("/home");
+  const handleLogin = () => navigate("/travel_plans");
 
   return (
     <S.Container>
