@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import citiesList from "../../data/citiesList.json";
 import { Footer, Header, Container, Wrapper } from "../styles/layout.style";
 import { ToggleButton } from "../styles/button.style";
+import SearchBox from "../components/searchBox/SearchBox";
 
 interface City {
   id: number;
@@ -40,15 +41,11 @@ const Cities: React.FC = () => {
     <Container>
       <Wrapper>
         <Header>
-          <S.SearchBox>
-            <S.SearchInput
-              type="search"
-              placeholder="여행지를 골라다오"
-              value={searchCity}
-              onChange={(e) => setSearchCity(e.target.value)}
-            />
-            <S.StyledSearchIcon />
-          </S.SearchBox>
+          <SearchBox
+            placeholder="여행지를 골라다오"
+            value={searchCity}
+            onChange={(e) => setSearchCity(e.target.value)}
+          />
         </Header>
         <S.ScrollArea>
           {filteredCities.map(({ id, name, img }) => (
@@ -64,7 +61,7 @@ const Cities: React.FC = () => {
               {selectedCities.map(({ id, name, img }) => (
                 <S.SelectedCity key={id}>
                   <S.RemoveButton onClick={() => handleRemoveCity(id)}>×</S.RemoveButton>
-                  <S.SelectedCityImage src={`/img/${img}`} alt={name}/>
+                  <S.SelectedCityImage src={`/img/${img}`} alt={name} />
                   <S.SelectedCityName>{name}</S.SelectedCityName>
                 </S.SelectedCity>
               ))}
