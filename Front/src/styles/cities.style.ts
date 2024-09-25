@@ -57,8 +57,8 @@ export const SelectedCitiesArea = styled.div<{ $isempty: boolean }>`
   overflow-y: scroll;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
-  background-color: rgb(0 112 243 / 10%);
+  gap: 2.5rem;
+  background-color: #e4f1ff;
 `;
 
 export const SelectedCity = styled.div`
@@ -66,7 +66,6 @@ export const SelectedCity = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 16px;
 `;
 
 export const RemoveButton = styled.button`
@@ -76,8 +75,8 @@ export const RemoveButton = styled.button`
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: #e0e0e0;
-  color: white;
+  background-color: white;
+  color: #ef4444;
   border: none;
   font-size: 1rem;
   display: flex;
@@ -88,8 +87,8 @@ export const RemoveButton = styled.button`
 `;
 
 export const SelectedCityImage = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   object-fit: cover;
 `;
