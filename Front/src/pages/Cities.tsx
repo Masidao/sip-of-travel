@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import * as S from "../styles/cities.style";
 import { useNavigate } from "react-router-dom";
 import citiesList from "../../data/citiesList.json";
+import { Footer, Header, Container, Wrapper } from "../styles/layout.style";
+import { ToggleButton } from "../styles/button.syle";
 
 interface City {
   id: number;
@@ -33,9 +35,9 @@ const Cities: React.FC = () => {
   console.log(selectedCities.length);
 
   return (
-    <S.Container>
-      <S.Wrapper>
-        <S.Header>
+    <Container>
+      <Wrapper>
+        <Header>
           <S.SearchBox>
             <S.SearchInput
               type="search"
@@ -45,7 +47,7 @@ const Cities: React.FC = () => {
             />
             <S.StyledSearchIcon />
           </S.SearchBox>
-        </S.Header>
+        </Header>
         <S.ScrollArea>
           {filteredCities.map(({ id, name, img }) => (
             <S.Item
@@ -57,7 +59,7 @@ const Cities: React.FC = () => {
             </S.Item>
           ))}
         </S.ScrollArea>
-        <S.Footer>
+        <Footer>
           <div>
             <S.SelectedCitiesArea $isempty={selectedCities.length === 0}>
               {selectedCities.map((city) => (
@@ -75,16 +77,16 @@ const Cities: React.FC = () => {
             </S.SelectedCitiesArea>
           </div>
           <S.ButtonWrapper>
-            <S.Button
+            <ToggleButton
               onClick={handleSelectCities}
               disabled={selectedCities.length === 0}
             >
               선택 완료
-            </S.Button>
+            </ToggleButton>
           </S.ButtonWrapper>
-        </S.Footer>
-      </S.Wrapper>
-    </S.Container>
+        </Footer>
+      </Wrapper>
+    </Container>
   );
 };
 

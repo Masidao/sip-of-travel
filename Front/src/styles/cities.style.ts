@@ -1,19 +1,6 @@
 import styled from "styled-components";
 import SearchIcon from "../assets/SearchIcon";
 
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-`;
-
-export const Wrapper = styled.div`
-  width: 100%;
-  max-width: 500px;
-`;
-
 export const SearchBox = styled.div`
   display: flex;
   align-items: center;
@@ -67,8 +54,7 @@ export const SelectedCitiesArea = styled.div<{ $isempty: boolean }>`
   display: flex;
   visibility: ${({ $isempty }) => ($isempty ? "hidden" : "unset")};
   height: 100px;
-  overflow: scroll;
-  flex-wrap: wrap;
+  overflow-y: scroll;
   justify-content: center;
   align-items: center;
   gap: 1rem;
@@ -118,34 +104,4 @@ export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-
-export const Button = styled.button<{ disabled: boolean }>`
-  width: 100%;
-  max-width: 500px;
-  padding: 1rem;
-  background-color: ${(props) => (props.disabled ? "#ccc" : "#0070f3")};
-  color: white;
-  border: none;
-  border-radius: 10px;
-  font-size: 1rem;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
-  transition: background-color 0.2s;
-`;
-
-export const Footer = styled.footer`
-  height: 10vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-`;
-export const Header = styled.header`
-  height: 10vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 `;
