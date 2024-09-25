@@ -13,14 +13,18 @@ interface City {
 
 const Cities: React.FC = () => {
   const navigate = useNavigate();
-  const handleSelectCities = () => navigate("/calendar");
-
   const [searchCity, setSearchCity] = useState("");
   const [selectedCities, setSelectedCities] = useState<City[]>([]);
 
   const filteredCities = citiesList.filter((city) =>
     city.name.includes(searchCity)
   );
+
+  const handleSelectCities = () => {
+    const selectedCityIds = selectedCities.map((city) => city.id);
+    localStorage.setItem("selectedCityIds", JSON.stringify(selectedCityIds));
+    navigate("/calendar");
+  };
 
   const handleSelectCity = (city: City) => {
     if (!selectedCities.some((selectedCity) => selectedCity.id === city.id)) {
@@ -31,8 +35,6 @@ const Cities: React.FC = () => {
   const handleRemoveCity = (cityId: number) => {
     setSelectedCities(selectedCities.filter((city) => city.id !== cityId));
   };
-
-  console.log(selectedCities.length);
 
   return (
     <Container>
@@ -50,10 +52,7 @@ const Cities: React.FC = () => {
         </Header>
         <S.ScrollArea>
           {filteredCities.map(({ id, name, img }) => (
-            <S.Item
-              key={id}
-              onClick={() => handleSelectCity({ id, name, img })}
-            >
+            <S.Item key={id} onClick={() => handleSelectCity({ id, name, img })}>
               <S.Image src={`img/${img}`} alt={name} />
               <S.Title>{name}</S.Title>
             </S.Item>
@@ -62,16 +61,11 @@ const Cities: React.FC = () => {
         <Footer>
           <div>
             <S.SelectedCitiesArea $isempty={selectedCities.length === 0}>
-              {selectedCities.map((city) => (
-                <S.SelectedCity key={city.id}>
-                  <S.RemoveButton onClick={() => handleRemoveCity(city.id)}>
-                    ×
-                  </S.RemoveButton>
-                  <S.SelectedCityImage
-                    src={`/img/${city.img}`}
-                    alt={city.name}
-                  />
-                  <S.SelectedCityName>{city.name}</S.SelectedCityName>
+              {selectedCities.map(({ id, name, img }) => (
+                <S.SelectedCity key={id}>
+                  <S.RemoveButton onClick={() => handleRemoveCity(id)}>×</S.RemoveButton>
+                  <S.SelectedCityImage src={`/img/${img}`} alt={name}/>
+                  <S.SelectedCityName>{name}</S.SelectedCityName>
                 </S.SelectedCity>
               ))}
             </S.SelectedCitiesArea>
