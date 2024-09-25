@@ -3,7 +3,7 @@ import * as S from "../styles/home.style";
 import citiesList from "../../data/citiesList.json";
 import { Link, useNavigate } from "react-router-dom";
 import { Footer, Header, Container, Wrapper } from "../styles/layout.style";
-import { AddButton } from "../styles/button.syle";
+import { AddButton } from "../styles/button.style";
 
 const user = "다오";
 
@@ -37,7 +37,10 @@ const Home: React.FC<HomeProps> = ({ schedules }) => {
           {schedules.length > 0 ? (
             schedules.map(({ id, city_id, start_date, end_date }) => (
               <S.ScheduleItem key={id}>
-                <Link to={`/travel_plans/${id}`} style={{ textDecoration: "none" }}>
+                <Link
+                  to={`/travel_plans/${id}`}
+                  style={{ textDecoration: "none" }}
+                >
                   <S.ScheduleTitle>{getCityName(city_id)} 여행</S.ScheduleTitle>
                 </Link>
                 <S.ScheduleDate>

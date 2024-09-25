@@ -3,7 +3,7 @@ import * as S from "../styles/cities.style";
 import { useNavigate } from "react-router-dom";
 import citiesList from "../../data/citiesList.json";
 import { Footer, Header, Container, Wrapper } from "../styles/layout.style";
-import { ToggleButton } from "../styles/button.syle";
+import { ToggleButton } from "../styles/button.style";
 
 interface City {
   id: number;
