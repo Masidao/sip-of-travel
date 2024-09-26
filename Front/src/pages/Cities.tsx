@@ -24,7 +24,7 @@ const Cities: React.FC = () => {
   const handleSelectCities = () => {
     const selectedCityIds = selectedCities.map((city) => city.id);
     localStorage.setItem("selectedCityIds", JSON.stringify(selectedCityIds));
-    navigate("/calendar");
+    navigate("/dates");
   };
 
   const handleSelectCity = (city: City) => {
