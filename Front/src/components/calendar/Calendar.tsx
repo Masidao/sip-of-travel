@@ -34,8 +34,10 @@ const Calendar: React.FC<CalendarProps> = ({
   );
 
   useEffect(() => {
-    const currentMonth = calendarRef.current?.children[centerMonth];
-    currentMonth?.scrollIntoView({ behavior: "instant", block: "center" }); // 단번에 보이게, 수직 중앙에 위치
+    const currentMonth = calendarRef.current?.children[centerMonth] as HTMLElement;
+    if (currentMonth && typeof currentMonth.scrollIntoView === "function") { // test에서 currentMonth?.scrollIntoView is not a function 오류
+      currentMonth.scrollIntoView({ behavior: "instant", block: "center" });
+    }
   }, []);
 
   const isDateInRange = (date: Date) =>
