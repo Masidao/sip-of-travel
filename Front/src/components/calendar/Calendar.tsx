@@ -60,8 +60,8 @@ const Calendar: React.FC<CalendarProps> = ({
             ))}
           </S.WeekDays>
           <S.DaysGrid>
-            {[...Array(getDay(startOfMonth(month))).keys()].map((_, i) => (
-              <div key={i} />
+            {[...Array(getDay(startOfMonth(month))).keys()].map((num) => (
+              <div key={num} />
             ))}
             {eachDayOfInterval({
               start: startOfMonth(month),
