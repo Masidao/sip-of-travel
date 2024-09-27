@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import styled from "styled-components";
+import * as S from "../../styles/calendar.style";
 import {
   addMonths,
   subMonths,
@@ -19,6 +19,8 @@ interface CalendarProps {
 }
 
 const week = ["일", "월", "화", "수", "목", "금", "토"];
+const totalMonths = 13; // 13개월 달력 구성. 변경 가능성 있음
+const centerMonth = Math.floor(totalMonths / 2);
 
 const Calendar: React.FC<CalendarProps> = ({
   currentDate,
@@ -27,16 +29,16 @@ const Calendar: React.FC<CalendarProps> = ({
 }) => {
   const calendarRef = useRef<HTMLDivElement>(null);
 
-  const months = Array.from({ length: 13 }, (_, i) => addMonths(subMonths(currentDate, 6), i));
-  // 13개월 달 구성. 변경 가능성 있음
+  const months = Array.from({ length: totalMonths }, (_, i) =>
+    addMonths(subMonths(currentDate, 6), i)
+  );
 
   useEffect(() => {
-    const currentMonth = calendarRef.current?.children[Math.floor(months.length/2)];
+    const currentMonth = calendarRef.current?.children[centerMonth];
     currentMonth?.scrollIntoView({ behavior: "instant", block: "center" }); // 단번에 보이게, 수직 중앙에 위치
   }, []);
 
   const isDateInRange = (date: Date) =>
-    selectedDates.length === 2 &&
     isWithinInterval(date, {
       start: selectedDates[0],
       end: selectedDates[1],
@@ -46,16 +48,16 @@ const Calendar: React.FC<CalendarProps> = ({
   const isEndDate = (date: Date) => isSameDay(date, selectedDates[1]);
 
   return (
-    <Container ref={calendarRef}>
+    <S.Container ref={calendarRef}>
       {months.map((month) => (
-        <MonthContainer key={format(month, "yyyy-MM")}>
-          <MonthHeader>{format(month, "yyyy년 MM월")}</MonthHeader>
-          <WeekDays>
+        <S.MonthContainer key={format(month, "yyyy-MM")}>
+          <S.MonthHeader>{format(month, "yyyy년 MM월")}</S.MonthHeader>
+          <S.WeekDays>
             {week.map((day) => (
-              <WeekDay key={day}>{day}</WeekDay>
+              <S.WeekDay key={day}>{day}</S.WeekDay>
             ))}
-          </WeekDays>
-          <DaysGrid>
+          </S.WeekDays>
+          <S.DaysGrid>
             {[...Array(getDay(startOfMonth(month))).keys()].map((_, i) => (
               <div key={i} />
             ))}
@@ -63,7 +65,7 @@ const Calendar: React.FC<CalendarProps> = ({
               start: startOfMonth(month),
               end: endOfMonth(month),
             }).map((date) => (
-              <Day
+              <S.Day
                 key={format(date, "yy-MM-dd")}
                 onClick={() => onDateClick(date)}
                 $isInRange={isDateInRange(date)}
@@ -71,98 +73,13 @@ const Calendar: React.FC<CalendarProps> = ({
                 $isEndDate={isEndDate(date)}
               >
                 {format(date, "d")}
-              </Day>
+              </S.Day>
             ))}
-          </DaysGrid>
-        </MonthContainer>
+          </S.DaysGrid>
+        </S.MonthContainer>
       ))}
-    </Container>
+    </S.Container>
   );
 };
-
-const Container = styled.div`
-  height: 75vh;
-  overflow-y: auto;
-  background-color: #fcfcfc;
-  box-shadow: 0px 5px #fcfcfc;
-  padding: 20px;
-`;
-
-const MonthContainer = styled.div`
-  padding-bottom: 2rem;
-`;
-
-const MonthHeader = styled.h3`
-  text-align: center;
-  margin: 2rem 0;
-`;
-
-const WeekDays = styled.div`
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  text-align: center;
-  font-weight: bold;
-  height: 40px;
-`;
-
-const WeekDay = styled.div`
-  padding: 5px;
-`;
-
-const DaysGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-`;
-
-const Day = styled.div<{
-  $isInRange: boolean;
-  $isStartDate: boolean;
-  $isEndDate: boolean;
-}>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 40px;
-  width: 100%;
-  margin: 2px auto;
-  cursor: pointer;
-  position: relative;
-  z-index: 1;
-  color: ${({ $isStartDate, $isEndDate }) =>
-    $isStartDate || $isEndDate ? "white" : "black"};
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 40px;
-    background-color: ${({ $isInRange }) => ($isInRange ? "#E7F0FF" : "unset")};
-    margin-left: ${({ $isStartDate }) => ($isStartDate ? "50%" : "unset")};
-    margin-right: ${({ $isEndDate }) => ($isEndDate ? "50%" : "unset")};
-    z-index: -1;
-    transform: translateY(-50%);
-  }
-
-  &::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-    ${({ $isStartDate, $isEndDate }) =>
-      $isStartDate || $isEndDate
-        ? `
-        width: 40px;
-        height: 40px;
-        background-color: #4E94F8;
-        border-radius: 50%;`
-        : `
-        background-color: transparent;
-      `}
-  }
-`;
 
 export default Calendar;
