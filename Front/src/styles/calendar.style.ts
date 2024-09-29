@@ -50,10 +50,10 @@ export const Day = styled.div<{
   position: relative;
   z-index: 1;
   color: ${(props) =>
-    props.$isWeekend
-      ? "#f20014"
-      : props.$isStartDate || props.$isEndDate
-        ? "white"
+    props.$isStartDate || props.$isEndDate
+      ? "white"
+      : props.$isWeekend
+        ? "#f20014"
         : "black"};
 
   &::before {
