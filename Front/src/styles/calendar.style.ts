@@ -36,8 +36,9 @@ export const DaysGrid = styled.div`
 
 export const Day = styled.div<{
   $isInRange: boolean;
-  $isStartDate: boolean; 
+  $isStartDate: boolean;
   $isEndDate: boolean;
+  $isWeekend: boolean;
 }>`
   display: flex;
   justify-content: center;
@@ -48,7 +49,12 @@ export const Day = styled.div<{
   cursor: pointer;
   position: relative;
   z-index: 1;
-  color: ${(props) => props.$isStartDate || props.$isEndDate ? "white" : "black"};
+  color: ${(props) =>
+    props.$isWeekend
+      ? "#f20014"
+      : props.$isStartDate || props.$isEndDate
+        ? "white"
+        : "black"};
 
   &::before {
     content: "";

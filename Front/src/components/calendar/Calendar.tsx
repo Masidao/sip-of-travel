@@ -49,6 +49,11 @@ const Calendar: React.FC<CalendarProps> = ({
   const isStartDate = (date: Date) => isSameDay(date, selectedDates[0]);
   const isEndDate = (date: Date) => isSameDay(date, selectedDates[1]);
 
+  const isWeekend = (date: Date) => {
+    const dayOfWeek = getDay(date);
+    return dayOfWeek === 0 || dayOfWeek === 6;
+  };
+
   return (
     <S.Container ref={calendarRef}>
       {months.map((month) => (
@@ -73,6 +78,7 @@ const Calendar: React.FC<CalendarProps> = ({
                 $isInRange={isDateInRange(date)}
                 $isStartDate={isStartDate(date)}
                 $isEndDate={isEndDate(date)}
+                $isWeekend={isWeekend(date)}
               >
                 {format(date, "d")}
               </S.Day>
