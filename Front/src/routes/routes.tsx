@@ -3,6 +3,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import schedules from "../../data/schedules.json";
 import Cities from "../pages/Cities";
+import Dates from "../pages/Dates";
 
 const routes = createBrowserRouter([
   {
@@ -17,10 +18,10 @@ const routes = createBrowserRouter([
     path: "/cities",
     element: <Cities />,
   },
-  // {
-  //   path: "/calendar",
-  //   element: <Calendar />,
-  // },
+  {
+    path: "/dates",
+    element: <Dates />,
+  },
   // {
   //   path: "/travel_plans",
   //   element: <TravelPlans />,
