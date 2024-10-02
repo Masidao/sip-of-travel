@@ -5,8 +5,9 @@ import citiesList from "../../data/citiesList.json";
 import { Footer, Header, Container, Wrapper } from "../styles/layout.style";
 import { ToggleButton } from "../styles/button.style";
 import SearchBox from "../components/searchBox/SearchBox";
+import useTravelStore from "../stores/useTravelStore";
 
-interface City {
+export interface City {
   id: number;
   name: string;
   img: string;
@@ -15,27 +16,18 @@ interface City {
 const Cities: React.FC = () => {
   const navigate = useNavigate();
   const [searchCity, setSearchCity] = useState("");
-  const [selectedCities, setSelectedCities] = useState<City[]>([]);
+  const { selectedCities, addCity, removeCity } = useTravelStore();
 
-  const filteredCities = citiesList.filter((city) =>
-    city.name.includes(searchCity)
-  );
-
-  const handleSelectCities = () => {
-    const selectedCityIds = selectedCities.map((city) => city.id);
-    localStorage.setItem("selectedCityIds", JSON.stringify(selectedCityIds));
-    navigate("/dates");
-  };
+  const filteredCities = citiesList.filter((city) => city.name.includes(searchCity));
 
   const handleSelectCity = (city: City) => {
     if (!selectedCities.some((selectedCity) => selectedCity.id === city.id)) {
-      setSelectedCities([...selectedCities, city]);
+      addCity(city);
     }
   };
 
-  const handleRemoveCity = (cityId: number) => {
-    setSelectedCities(selectedCities.filter((city) => city.id !== cityId));
-  };
+  const handleRemoveCity = (cityId: number) => removeCity(cityId);
+  const handleSelectCities = () => navigate("/dates");
 
   return (
     <Container>
@@ -49,7 +41,10 @@ const Cities: React.FC = () => {
         </Header>
         <S.ScrollArea>
           {filteredCities.map(({ id, name, img }) => (
-            <S.Item key={id} onClick={() => handleSelectCity({ id, name, img })}>
+            <S.Item
+              key={id}
+              onClick={() => handleSelectCity({ id, name, img })}
+            >
               <S.Image src={`img/${img}`} alt={name} />
               <S.Title>{name}</S.Title>
             </S.Item>
@@ -60,7 +55,9 @@ const Cities: React.FC = () => {
             <S.SelectedCitiesArea $isempty={selectedCities.length === 0}>
               {selectedCities.map(({ id, name, img }) => (
                 <S.SelectedCity key={id}>
-                  <S.RemoveButton onClick={() => handleRemoveCity(id)}>×</S.RemoveButton>
+                  <S.RemoveButton onClick={() => handleRemoveCity(id)}>
+                    ×
+                  </S.RemoveButton>
                   <S.SelectedCityImage src={`/img/${img}`} alt={name} />
                   <S.SelectedCityName>{name}</S.SelectedCityName>
                 </S.SelectedCity>
