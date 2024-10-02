@@ -24,10 +24,7 @@ const useTravelStore = create<TravelStore>((set) => ({
   addCity: (city) =>
     set((state) => ({ selectedCities: [...state.selectedCities, city] })),
   removeCity: (cityId) =>
-    set((state) => ({
-      selectedCities: state.selectedCities.filter((city) => city.id !== cityId),
-    })),
-
+    set((state) => ({ selectedCities: remove(state.selectedCities, cityId) })),
   setSelectedDates: (dates) =>
     set((state) => ({
       selectedDates:

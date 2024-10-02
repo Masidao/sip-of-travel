@@ -20,11 +20,11 @@ const Dates: React.FC = () => {
   };
 
   const handleSelectDates = () => {
-    const travelPlan = {
-      cities: selectedCities.map((city) => city.id),
-      startDate: selectedDates[0],
-      endDate: selectedDates[selectedDates.length - 1],
-    };
+    // const travelPlan = {
+    //   cities: selectedCities.map((city) => city.id),
+    //   startDate: selectedDates[0],
+    //   endDate: selectedDates[selectedDates.length - 1],
+    // };
     // 여행 일정 post 요청
     navigate("/travel_plans");
   };
