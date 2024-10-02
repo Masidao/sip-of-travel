@@ -39,8 +39,8 @@ describe("Home Component", () => {
   });
 
   it("선택된 도시의 제거 버튼을 클릭하면 하단에서 제거된다", () => {
-    const cityItem = screen.getByText("제주");
-    fireEvent.click(cityItem);
+    const cityItem = screen.getAllByText("제주");
+    fireEvent.click(cityItem[cityItem.length - 1]);
 
     const removeButton = screen.getByText("×");
     fireEvent.click(removeButton);

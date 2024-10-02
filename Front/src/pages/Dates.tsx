@@ -1,14 +1,15 @@
-import React, { useState } from "react";
 import * as S from "../styles/dates.style";
 import { format } from "date-fns";
 import { Container, Wrapper } from "../styles/layout.style";
 import { ToggleButton } from "../styles/button.style";
 import Calendar from "../components/calendar/Calendar";
 import { useNavigate } from "react-router-dom";
+import useTravelStore from "../stores/useTravelStore";
 
 const Dates: React.FC = () => {
   const navigate = useNavigate();
-  const [selectedDates, setSelectedDates] = useState<Date[]>([]);
+  const { selectedDates, setSelectedDates, selectedCities } = useTravelStore();
+
   const currentDate = new Date();
 
   const handleDateClick = (date: Date) => {
@@ -19,6 +20,11 @@ const Dates: React.FC = () => {
   };
 
   const handleSelectDates = () => {
+    // const travelPlan = {
+    //   cities: selectedCities.map((city) => city.id),
+    //   startDate: selectedDates[0],
+    //   endDate: selectedDates[selectedDates.length - 1],
+    // };
     // 여행 일정 post 요청
     navigate("/travel_plans");
   };
