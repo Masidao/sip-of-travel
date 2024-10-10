@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: travel
+  datasource:
+    url: jdbc:mysql://localhost:3306/masida
+    username: masida_dev
+    password: qwer1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  sql:
+    init:
+      mode: always
+
+  jpa:
+    hibernate:
+      ddl-auto: none  # 이미 생성된 테이블을 사용하는 경우
+
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+
+#  elasticsearch:
+#    uris: localhost:9200
+#    username: elastic
+#    password: oLqPS2boYYmbJ3cR74oV  # elastic 계정의 비밀번호
