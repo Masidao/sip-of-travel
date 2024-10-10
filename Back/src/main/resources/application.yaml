@@ -18,7 +18,7 @@ spring:
   jackson:
     property-naming-strategy: SNAKE_CASE
 
-  elasticsearch:
-    uris: localhost:9200
-    username: elastic
-    password: oLqPS2boYYmbJ3cR74oV  # elastic 계정의 비밀번호
+#  elasticsearch:
+#    uris: localhost:9200
+#    username: elastic
+#    password: oLqPS2boYYmbJ3cR74oV  # elastic 계정의 비밀번호
