@@ -1,0 +1,43 @@
+name: Close Issues on PR Merge
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  close-issues:
+    if: github.event.pull_request.merged == true &&
+      (github.event.pull_request.base.ref == 'back' ||
+      github.event.pull_request.base.ref == 'front')
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Github CLI 설치
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gh
+
+      - name: 관련 이슈 닫기
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # PR 본문에서 이슈 번호 추출
+          ISSUE_NUMBERS=$(echo "${{ github.event.pull_request.body }}" | grep -oE '#[0-9]+' | sed 's/#//g')
+          
+          # 이슈 번호가 하나라도 있는지 확인
+          if [ -z "$ISSUE_NUMBERS" ]; then
+            echo "No issue numbers found in PR body."
+            exit 0
+          fi
+
+          # 이슈 번호에 대해 닫기 수행
+          for ISSUE in $ISSUE_NUMBERS; do
+            echo "Closing issue #$ISSUE"
+            gh issue close $ISSUE --comment "이 이슈가 관련된 PR #${{ github.event.pull_request.number }} 이 머지되어 이슈를 닫습니다. ✅"
+          done
