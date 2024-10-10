@@ -24,7 +24,7 @@ public class CityService {
     }
 
     public List<CityListResponse> getCitiesByCityName(String cityName) {
-        return cityRepository.findByName(cityName)
+        return cityRepository.findByNameContaining(cityName)
                 .stream()
                 .map(city -> CityListResponse.builder()
                         .id(city.getId())
