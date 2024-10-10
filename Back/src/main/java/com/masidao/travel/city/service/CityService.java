@@ -1,8 +1,6 @@
 package com.masidao.travel.city.service;
 
 import com.masidao.travel.city.dto.CityListResponse;
-import com.masidao.travel.city.entity.City;
-import com.masidao.travel.city.entity.CityDocument;
 import com.masidao.travel.city.repository.CityRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,6 +19,16 @@ public class CityService {
                 .map(cityProjection -> CityListResponse.builder()
                         .id(cityProjection.getId())
                         .name(cityProjection.getName())
+                        .build())
+                .toList();
+    }
+
+    public List<CityListResponse> getCitiesByCityName(String cityName) {
+        return cityRepository.findByName(cityName)
+                .stream()
+                .map(city -> CityListResponse.builder()
+                        .id(city.getId())
+                        .name(city.getName())
                         .build())
                 .toList();
     }
