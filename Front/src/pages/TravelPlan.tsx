@@ -7,6 +7,7 @@ import citiesList from "../../data/citiesList.json";
 import scheduleList from "../../data/scheduleList.json";
 import StarsIcon from "../assets/StarsIcon";
 import { AddScheduleButton, GroupButton } from "../styles/button.style";
+import BasicMap from "../components/map/BasicMap";
 
 const TravelPlan: FC = () => {
   const { travelPlanId } = useParams();
@@ -34,7 +35,9 @@ const TravelPlan: FC = () => {
             {start_date} ~ {end_date}
           </div>
         </S.PlanHeader>
-        <S.Map></S.Map>
+        <S.Map>
+          <BasicMap />
+        </S.Map>
         <S.Group>
           <GroupButton>
             <StarsIcon />
