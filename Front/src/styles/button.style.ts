@@ -32,3 +32,11 @@ export const GroupButton = styled(CommonButton)`
   margin: 1rem;
   padding: 0;
 `;
+
+export const AddScheduleButton = styled(CommonButton)`
+  width: auto;
+  background-color: unset;
+  color: black;
+  border: 1px solid #e0e0e0;
+  padding: 11px;
+`;

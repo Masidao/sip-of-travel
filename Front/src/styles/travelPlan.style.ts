@@ -25,11 +25,24 @@ export const Schedules = styled.div`
 `;
 
 export const ScheduleItem = styled.div`
-  display: flex;
-  gap: 10px;
   padding: 1rem;
   font-size: 1.2rem;
+  .day {
+    font-size: 1.5rem;
+  }
   .date {
     color: #e0e0e0;
   }
+`;
+
+export const ItemHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const ItemTitle = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
 `;

@@ -6,7 +6,7 @@ import schedules from "../../data/schedules.json";
 import citiesList from "../../data/citiesList.json";
 import scheduleList from "../../data/scheduleList.json";
 import StarsIcon from "../assets/StarsIcon";
-import { GroupButton } from "../styles/button.style";
+import { AddScheduleButton, GroupButton } from "../styles/button.style";
 
 const TravelPlan: FC = () => {
   const { travelPlanId } = useParams();
@@ -47,12 +47,16 @@ const TravelPlan: FC = () => {
         </S.Group>
         <S.Schedules>
           {scheduleList.map(({ id, date, has_schedule }) => (
-            <>
-              <S.ScheduleItem key={id}>
-                Day {id} <div className="date">{date}</div>
-              </S.ScheduleItem>
+            <S.ScheduleItem key={id}>
+              <S.ItemHeader>
+                <S.ItemTitle>
+                  <div className="day">Day {id}</div>
+                  <div className="date">{date}</div>
+                </S.ItemTitle>
+                <AddScheduleButton>일정추가</AddScheduleButton>
+              </S.ItemHeader>
               <div>{has_schedule ? <></> : <></>}</div>
-            </>
+            </S.ScheduleItem>
           ))}
         </S.Schedules>
       </Wrapper>
