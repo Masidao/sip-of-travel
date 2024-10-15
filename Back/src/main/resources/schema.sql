@@ -17,8 +17,10 @@ CREATE TABLE members (
 CREATE TABLE cities (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
-    latitude FLOAT,
-    longitude FLOAT
+    image_url VARCHAR(255) NOT NULL,
+    latitude FLOAT NOT NULL,
+    longitude FLOAT NOT NULL,
+    level INT NOT NULL DEFAULT 0
 );
 
 CREATE TABLE travel_plans (
