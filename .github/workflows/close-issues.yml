@@ -26,9 +26,10 @@ jobs:
       - name: 관련 이슈 닫기
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_BODY: ${{ github.event.pull_request.body }}
         run: |
           # PR 본문에서 이슈 번호 추출
-          ISSUE_NUMBERS=$(echo "${{ github.event.pull_request.body }}" | grep -oE '#[0-9]+' | sed 's/#//g')
+          ISSUE_NUMBERS=$(echo "${PR_BODY}" | grep -oE '#[0-9]+' | sed 's/#//g')
           
           # 이슈 번호가 하나라도 있는지 확인
           if [ -z "$ISSUE_NUMBERS" ]; then
