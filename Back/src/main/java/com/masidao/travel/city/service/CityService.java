@@ -19,6 +19,10 @@ public class CityService {
                 .map(cityProjection -> CityListResponse.builder()
                         .id(cityProjection.getId())
                         .name(cityProjection.getName())
+                        .cityImage(cityProjection.getImageUrl())
+                        .cityLatitude(cityProjection.getLatitude())
+                        .cityLongitude(cityProjection.getLongitude())
+                        .cityLevel(cityProjection.getLevel())
                         .build())
                 .toList();
     }
@@ -29,6 +33,10 @@ public class CityService {
                 .map(city -> CityListResponse.builder()
                         .id(city.getId())
                         .name(city.getName())
+                        .cityImage(city.getImageUrl())
+                        .cityLatitude(city.getLatitude())
+                        .cityLongitude(city.getLongitude())
+                        .cityLevel(city.getLevel())
                         .build())
                 .toList();
     }
