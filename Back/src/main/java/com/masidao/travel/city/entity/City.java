@@ -18,9 +18,13 @@ public class City {
     @NotNull
     private String name;
 
+    private String imageUrl;
+
     @NotNull
     private double latitude;
 
     @NotNull
     private double longitude;
+
+    private Long level;
 }
