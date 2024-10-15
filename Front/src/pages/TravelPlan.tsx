@@ -9,9 +9,6 @@ import StarsIcon from "../assets/StarsIcon";
 import { AddScheduleButton, GroupButton } from "../styles/button.style";
 import Map from "../components/map/Map";
 
-const JEJU_LAT = 33.387393;
-const JEJU_LNG = 126.543958;
-
 const TravelPlan: FC = () => {
   const { travelPlanId } = useParams();
 
@@ -21,6 +18,20 @@ const TravelPlan: FC = () => {
     const city = citiesList.find((city) => city.id === city_id);
     return city ? city.name : "국내";
   };
+
+  const getCityMap = (city_id: number) => {
+    const city = citiesList.find((city) => city.id === city_id);
+    if (!city) {
+      return { lat: 35.723817, lng: 127.483131, level: 14 };
+    }
+    
+    return {
+      lat: city.city_lat ?? 35.723817,
+      lng: city.city_lng ?? 127.483131,
+      level: city.city_level ?? 14,
+    };
+  };
+
   // 나중엔 /api/travel_plans/{travel_plan_id} GET 요청
 
   if (!travelPlan) {
@@ -28,6 +39,7 @@ const TravelPlan: FC = () => {
   }
 
   const { city_id, start_date, end_date } = travelPlan;
+  const { lat, lng, level } = getCityMap(city_id);
 
   return (
     <Container>
@@ -39,7 +51,7 @@ const TravelPlan: FC = () => {
           </S.Date>
         </S.PlanHeader>
         <S.Map>
-          <Map lat={JEJU_LAT} lng={JEJU_LNG} />
+          <Map lat={lat} lng={lng} level={level} />
         </S.Map>
         <S.Group>
           <GroupButton>

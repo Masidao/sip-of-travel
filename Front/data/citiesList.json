@@ -2,66 +2,105 @@
   {
     "id": 1,
     "name": "가평·양평",
-    "img": "제주.png"
+    "city_image": "제주.png",
+    "city_lat": 37.66621,
+    "city_lng": 127.514301,
+    "city_level": 10
   },
   {
     "id": 2,
     "name": "강릉·속초",
-    "img": "제주.png"
+    "city_image": "제주.png",
+    "city_lat": 37.975011,
+    "city_lng": 128.743031,
+    "city_level": 10
   },
   {
     "id": 3,
     "name": "경주",
-    "img": "제주.png"
+    "city_image": "제주.png",
+    "city_lat": 35.8490351,
+    "city_lng": 129.2286813,
+    "city_level": 10
   },
   {
     "id": 4,
     "name": "부산",
-    "img": "제주.png"
+    "city_image": "제주.png",
+    "city_lat": 35.189573,
+    "city_lng": 129.08371,
+    "city_level": 10
   },
   {
     "id": 5,
     "name": "여수",
-    "img": "제주.png"
+    "city_image": "제주.png",
+    "city_lat": 34.777372,
+    "city_lng": 127.712122,
+    "city_level": 10
   },
   {
     "id": 6,
     "name": "인천",
-    "img": "제주.png"
+    "city_image": "제주.png",
+    "city_lat": 37.451877,
+    "city_lng": 126.705257,
+    "city_level": 10
   },
   {
     "id": 7,
     "name": "전주",
-    "img": "제주.png"
+    "city_image": "제주.png",
+    "city_lat": 35.829639,
+    "city_lng": 127.174601,
+    "city_level": 10
   },
   {
     "id": 8,
     "name": "제주",
-    "img": "제주.png"
+    "city_image": "제주.png",
+    "city_lat": 33.387393,
+    "city_lng": 126.543958,
+    "city_level": 10
   },
   {
     "id": 9,
     "name": "춘천·홍천",
-    "img": "제주.png"
+    "city_image": "제주.png",
+    "city_lat": 37.795819,
+    "city_lng": 127.858171,
+    "city_level": 10
   },
   {
     "id": 10,
     "name": "태안",
-    "img": "제주.png"
+    "city_image": "제주.png",
+    "city_lat": 33.387393,
+    "city_lng": 126.543958,
+    "city_level": 10
   },
   {
     "id": 11,
     "name": "통영·거제·남해",
-    "img": "제주.png"
+    "city_image": "제주.png",
+    "city_lat": 34.87752,
+    "city_lng": 128.556116,
+    "city_level": 10
   },
   {
     "id": 12,
     "name": "포항·안동",
-    "img": "제주.png"
+    "city_image": "제주.png",
+    "city_lat": 36.35621,
+    "city_lng": 129.141116,
+    "city_level": 10
   },
   {
     "id": 13,
     "name": "국내",
-    "img": "제주.png"
+    "city_image": "제주.png",
+    "city_lat": 35.723817,
+    "city_lng": 127.483131,
+    "city_level": 14
   }
 ]
