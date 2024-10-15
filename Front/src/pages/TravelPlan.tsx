@@ -30,8 +30,8 @@ const TravelPlan: FC = () => {
     }
 
     return {
-      lat: city.city_lat ?? 35.723817,
-      lng: city.city_lng ?? 127.483131,
+      lat: city.city_latitude ?? 35.723817,
+      lng: city.city_longitude ?? 127.483131,
       level: city.city_level ?? 14,
     };
   };
