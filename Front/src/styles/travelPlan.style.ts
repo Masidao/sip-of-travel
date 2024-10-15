@@ -3,7 +3,6 @@ import { Header } from "./layout.style";
 
 export const PlanHeader = styled(Header)`
   justify-content: space-around;
-  border-bottom: 1px solid #e0e0e0;
 `;
 
 export const Title = styled.h1`
@@ -20,19 +19,21 @@ export const Group = styled.div`
 `;
 
 export const Schedules = styled.div`
-  height: 500px;
+  height: 400px;
   overflow-y: auto;
 `;
 
 export const ScheduleItem = styled.div`
-  padding: 1rem;
+  padding: 2rem 1rem;
   font-size: 1.2rem;
   .day {
     font-size: 1.5rem;
   }
-  .date {
-    color: #e0e0e0;
-  }
+`;
+
+export const Date = styled.div`
+  color: #b0b0b0;
+  font-size: 1.2rem;
 `;
 
 export const ItemHeader = styled.div`

@@ -7,7 +7,10 @@ import citiesList from "../../data/citiesList.json";
 import scheduleList from "../../data/scheduleList.json";
 import StarsIcon from "../assets/StarsIcon";
 import { AddScheduleButton, GroupButton } from "../styles/button.style";
-import BasicMap from "../components/map/BasicMap";
+import Map from "../components/map/Map";
+
+const JEJU_LAT = 33.387393;
+const JEJU_LNG = 126.543958;
 
 const TravelPlan: FC = () => {
   const { travelPlanId } = useParams();
@@ -31,12 +34,12 @@ const TravelPlan: FC = () => {
       <Wrapper>
         <S.PlanHeader>
           <S.Title>{getCityName(city_id)} 여행</S.Title>
-          <div>
+          <S.Date>
             {start_date} ~ {end_date}
-          </div>
+          </S.Date>
         </S.PlanHeader>
         <S.Map>
-          <BasicMap />
+          <Map lat={JEJU_LAT} lng={JEJU_LNG} />
         </S.Map>
         <S.Group>
           <GroupButton>
@@ -54,7 +57,7 @@ const TravelPlan: FC = () => {
               <S.ItemHeader>
                 <S.ItemTitle>
                   <div className="day">Day {id}</div>
-                  <div className="date">{date}</div>
+                  <S.Date>{date}</S.Date>
                 </S.ItemTitle>
                 <AddScheduleButton>일정추가</AddScheduleButton>
               </S.ItemHeader>
