@@ -1,13 +1,18 @@
 package com.masidao.travel.placeGroup.entity;
 
+import com.masidao.travel.travelPlan.entity.TravelPlan;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "place_groups")
 public class PlaceGroup {
 
@@ -15,16 +20,18 @@ public class PlaceGroup {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @Column(name = "travel_plan_id")
-    private Long travelPlanId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "travel_plan_id", nullable = false)
+    private TravelPlan travelPlan;
 
-    @NotNull
-    @Column(length = 50)
+    @Column(length = 50, nullable = false)
     private String name;
 
-    @NotNull
-    private Long amount;
+    @Column(nullable = false)
+    private Long amount = 0L;
+
+    @OneToMany(mappedBy = "placeGroup", cascade = CascadeType.ALL)
+    private List<PlaceGroupPlace> places = new ArrayList<>();
 }
     
     
