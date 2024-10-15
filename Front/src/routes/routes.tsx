@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
-import schedules from "../../data/schedules.json";
+import travelPlanData from "../../data/travelPlan.json";
 import Cities from "../pages/Cities";
 import Dates from "../pages/Dates";
 import TravelPlan from "../pages/TravelPlan";
@@ -13,7 +13,7 @@ const routes = createBrowserRouter([
   },
   {
     path: "/travel_plans",
-    element: <Home schedules={schedules} />,
+    element: <Home schedules={travelPlanData} />,
   },
   {
     path: "/cities",
@@ -27,10 +27,6 @@ const routes = createBrowserRouter([
     path: "/travel_plans/:travelPlanId",
     element: <TravelPlan />,
     children: [
-      // {
-      //   path: "schedules",
-      //   element: <Schedules />,
-      // },
       // {
       //   path: "place_groups",
       //   element: <PlaceGroups />,
