@@ -1,13 +1,18 @@
 package com.masidao.travel.placeGroup.service;
 
 import com.masidao.travel.place.dto.PlaceSearchResponse;
+import com.masidao.travel.place.entity.Place;
+import com.masidao.travel.place.repository.PlaceRepository;
+import com.masidao.travel.placeGroup.dto.PlaceGroupAddPlaceRequest;
 import com.masidao.travel.placeGroup.dto.PlaceGroupDetailResponse;
 import com.masidao.travel.placeGroup.dto.PlaceGroupResponse;
 import com.masidao.travel.placeGroup.entity.PlaceGroup;
 import com.masidao.travel.placeGroup.entity.PlaceGroupPlace;
+import com.masidao.travel.placeGroup.repository.PlaceGroupPlaceRepository;
 import com.masidao.travel.placeGroup.repository.PlaceGroupRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,6 +21,8 @@ import java.util.List;
 public class PlaceGroupService {
 
     private final PlaceGroupRepository placeGroupRepository;
+    private final PlaceRepository placeRepository;
+    private final PlaceGroupPlaceRepository  placeGroupPlaceRepository;
 
     public List<PlaceGroupResponse> getPlaceGroupList(Long travelPlanId) {
         return placeGroupRepository.findAllByTravelPlanId(travelPlanId);
@@ -33,5 +40,22 @@ public class PlaceGroupService {
                                 .category(place.getCategory())
                                 .build())
                         .toList());
+    }
+
+
+    @Transactional
+    public void addPlaceToPlaceGroup(Long placeGroupId, PlaceGroupAddPlaceRequest request) {
+        PlaceGroup placeGroup = placeGroupRepository.findById(placeGroupId)
+                .orElseThrow(() -> new RuntimeException("장소그룹이 없습니다."));
+
+        List<Place> places = placeRepository.findAllById(request.placeId());
+
+        for (Place place : places) {
+            PlaceGroupPlace placeGroupPlace = PlaceGroupPlace.builder()
+                    .placeGroup(placeGroup)
+                    .place(place)
+                    .build();
+            placeGroupPlaceRepository.save(placeGroupPlace);
+        }
     }
 }
