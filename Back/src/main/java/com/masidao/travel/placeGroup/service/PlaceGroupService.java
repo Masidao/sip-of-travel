@@ -3,7 +3,7 @@ package com.masidao.travel.placeGroup.service;
 import com.masidao.travel.place.dto.PlaceSearchResponse;
 import com.masidao.travel.place.entity.Place;
 import com.masidao.travel.place.repository.PlaceRepository;
-import com.masidao.travel.placeGroup.dto.PlaceGroupAddPlaceRequest;
+import com.masidao.travel.placeGroup.dto.PlaceGroupDeletePlaceRequest;
 import com.masidao.travel.placeGroup.dto.PlaceGroupDetailResponse;
 import com.masidao.travel.placeGroup.dto.PlaceGroupResponse;
 import com.masidao.travel.placeGroup.entity.PlaceGroup;
@@ -44,12 +44,13 @@ public class PlaceGroupService {
 
 
     @Transactional
-    public void addPlaceToPlaceGroup(Long placeGroupId, PlaceGroupAddPlaceRequest request) {
+    public void addPlaceToPlaceGroup(Long placeGroupId, PlaceGroupDeletePlaceRequest request) {
         PlaceGroup placeGroup = placeGroupRepository.findById(placeGroupId)
                 .orElseThrow(() -> new RuntimeException("장소그룹이 없습니다."));
 
         List<Place> places = placeRepository.findAllById(request.placeId());
 
+        // TODO: 중복처리, 삽입 쿼리 압축
         for (Place place : places) {
             PlaceGroupPlace placeGroupPlace = PlaceGroupPlace.builder()
                     .placeGroup(placeGroup)
@@ -57,5 +58,14 @@ public class PlaceGroupService {
                     .build();
             placeGroupPlaceRepository.save(placeGroupPlace);
         }
+    }
+
+    public void removePlaceFromPlaceGroup(Long placeGroupId, PlaceGroupDeletePlaceRequest request) {
+        PlaceGroup placeGroup = placeGroupRepository.findById(placeGroupId)
+                .orElseThrow(() -> new RuntimeException("장소그룹이 없습니다."));
+
+        List<PlaceGroupPlace> placesToRemove = placeGroupPlaceRepository.findByPlaceGroupAndPlaceIds(placeGroup, request.placeId());
+
+        placeGroupPlaceRepository.deleteAll(placesToRemove);
     }
 }

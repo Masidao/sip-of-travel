@@ -1,6 +1,6 @@
 package com.masidao.travel.placeGroup.controller;
 
-import com.masidao.travel.placeGroup.dto.PlaceGroupAddPlaceRequest;
+import com.masidao.travel.placeGroup.dto.PlaceGroupDeletePlaceRequest;
 import com.masidao.travel.placeGroup.dto.PlaceGroupDetailResponse;
 import com.masidao.travel.placeGroup.dto.PlaceGroupResponse;
 import com.masidao.travel.placeGroup.service.PlaceGroupService;
@@ -27,7 +27,12 @@ public class PlaceGroupController {
     }
 
     @PostMapping("/api/place_groups/{place_groups_id}/places")
-    public void addPlaceToPlaceGroup(@PathVariable("place_groups_id") Long placeGroupId, @RequestBody PlaceGroupAddPlaceRequest request) {
+    public void addPlaceToPlaceGroup(@PathVariable("place_groups_id") Long placeGroupId, @RequestBody PlaceGroupDeletePlaceRequest request) {
         placeGroupService.addPlaceToPlaceGroup(placeGroupId, request);
+    }
+
+    @DeleteMapping("/api/place_groups/{place_groups_id}/places")
+    public void removePlaceFromPlaceGroup(@PathVariable("place_groups_id") Long placeGroupId, @RequestBody PlaceGroupDeletePlaceRequest request) {
+        placeGroupService.removePlaceFromPlaceGroup(placeGroupId, request);
     }
 }
