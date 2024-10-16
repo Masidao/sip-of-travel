@@ -6,7 +6,7 @@ interface MapProps {
   level: number;
 }
 
-const Map: React.FC<MapProps> = ({ lat, lng, level }) => {
+const BasicMap: React.FC<MapProps> = ({ lat, lng, level }) => {
   useEffect(() => {
     const container = document.getElementById("map");
     if (!container) return;
@@ -21,4 +21,4 @@ const Map: React.FC<MapProps> = ({ lat, lng, level }) => {
   return <div id="map" style={{ width: "100%", height: "100%" }} />;
 };
 
-export default Map;
+export default BasicMap;

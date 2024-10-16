@@ -31,7 +31,7 @@ const ScheduleItem: FC<ScheduleItemProps> = ({
       <S.ItemHeader>
         <S.ItemTitle>
           <div className="day">Day {id}</div>
-          <S.Date>{date}</S.Date>
+          <div className="date">{date}</div>
           {hasSchedule && <ChevronIcon onClick={() => onClickChevron(id)} />}
         </S.ItemTitle>
         <AddScheduleButton>일정추가</AddScheduleButton>

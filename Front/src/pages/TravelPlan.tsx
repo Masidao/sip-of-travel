@@ -7,12 +7,14 @@ import citiesList from "../../data/citiesList.json";
 import scheduleList from "../../data/scheduleList.json";
 import StarsIcon from "../assets/StarsIcon";
 import { GroupButton } from "../styles/button.style";
-import Map from "../components/map/Map";
+import BasicMap from "../components/map/BasicMap";
 import ScheduleItem from "../components/schedule/ScheduleItem";
 
 const TravelPlan: FC = () => {
   const { travelPlanId } = useParams();
-  const [openSchedules, setOpenSchedules] = useState<{ [key: number]: boolean }>({});
+  const [openSchedules, setOpenSchedules] = useState<{
+    [key: number]: boolean;
+  }>({});
 
   const travelPlan = travelPlanData.find(
     (plan) => plan.id === Number(travelPlanId)
@@ -53,13 +55,13 @@ const TravelPlan: FC = () => {
       <Wrapper>
         <S.PlanHeader>
           <S.Title>{getCityName(city_id)} 여행</S.Title>
-          <S.Date>
+          <S.SubTitle>
             {start_date} ~ {end_date}
-          </S.Date>
+          </S.SubTitle>
         </S.PlanHeader>
-        <S.Map>
-          <Map lat={lat} lng={lng} level={level} />
-        </S.Map>
+        <S.MapBox>
+          <BasicMap lat={lat} lng={lng} level={level} />
+        </S.MapBox>
         <S.Group>
           <GroupButton>
             <StarsIcon />

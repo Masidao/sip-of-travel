@@ -11,7 +11,7 @@ const ChevronIcon = (props: SVGProps<SVGSVGElement>) => (
   >
     <path
       d="M12 18L24 30L36 18"
-      stroke="#1E1E1E"
+      stroke="#858585"
       strokeWidth={4}
       strokeLinecap="round"
       strokeLinejoin="round"

@@ -9,12 +9,12 @@ export const Title = styled.h1`
   margin: 0;
 `;
 
-export const Date = styled.div`
+export const SubTitle = styled.div`
   color: #b0b0b0;
   font-size: 1.2rem;
 `;
 
-export const Map = styled.div`
+export const MapBox = styled.div`
   height: 300px;
   background-color: whitesmoke;
 `;
