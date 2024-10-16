@@ -1,9 +1,9 @@
 import React from "react";
 import * as S from "../styles/home.style";
-import citiesList from "../../data/citiesList.json";
 import { Link, useNavigate } from "react-router-dom";
 import { Footer, Header, Container, Wrapper } from "../styles/layout.style";
 import { AddButton } from "../styles/button.style";
+import { getCityName } from "../utils/getCityData";
 
 const user = "다오";
 
@@ -21,11 +21,6 @@ interface HomeProps {
 const Home: React.FC<HomeProps> = ({ schedules }) => {
   const navigate = useNavigate();
   const handleAddSchedule = () => navigate("/cities");
-
-  const getCityName = (city_id: number): string => {
-    const city = citiesList.find((city) => city.id === city_id);
-    return city ? city.name : "국내";
-  };
 
   return (
     <Container>

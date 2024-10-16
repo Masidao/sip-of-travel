@@ -1,9 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
-import schedules from "../../data/schedules.json";
+import travelPlanData from "../../data/travelPlan.json";
 import Cities from "../pages/Cities";
 import Dates from "../pages/Dates";
+import TravelPlan from "../pages/TravelPlan";
 
 const routes = createBrowserRouter([
   {
@@ -12,7 +13,7 @@ const routes = createBrowserRouter([
   },
   {
     path: "/travel_plans",
-    element: <Home schedules={schedules} />,
+    element: <Home schedules={travelPlanData} />,
   },
   {
     path: "/cities",
@@ -22,30 +23,18 @@ const routes = createBrowserRouter([
     path: "/dates",
     element: <Dates />,
   },
+  {
+    path: "/travel_plans/:travelPlanId",
+    element: <TravelPlan />,
+    children: [
+      // {
+      //   path: "place_groups",
+      //   element: <PlaceGroups />,
+      // },
+    ],
+  },
   // {
-  //   path: "/travel_plans",
-  //   element: <TravelPlans />,
-  // },
-  // {
-  //   path: "/travel-plans/:travelPlanId",
-  //   element: <TravelPlanDetail />,
-  //   children: [
-  //     {
-  //       path: "schedules",
-  //       element: <Schedules />,
-  //     },
-  //     {
-  //       path: "schedules/:dailyScheduleId",
-  //       element: <DailySchedule />,
-  //     },
-  //     {
-  //       path: "place-groups",
-  //       element: <PlaceGroups />,
-  //     },
-  //   ],
-  // },
-  // {
-  //   path: "/place-groups/:groupId",
+  //   path: "/place_groups/:groupId",
   //   element: <PlaceGroupDetail />,
   // },
   // {
@@ -53,7 +42,7 @@ const routes = createBrowserRouter([
   //   element: <Places />,
   // },
   // {
-  //   path: "/place-groups/:groupId/places",
+  //   path: "/place_groups/:groupId/places",
   //   element: <Places />,
   // },
 ]);

@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "date": "2024-09-15",
+    "day_nubmer": 1,
+    "has_schedule": true
+  },
+  {
+    "id": 2,
+    "date": "2024-09-16",
+    "day_nubmer": 1,
+    "has_schedule": false
+  },
+  {
+    "id": 3,
+    "date": "2024-09-17",
+    "day_nubmer": 1,
+    "has_schedule": true
+  },
+  {
+    "id": 4,
+    "date": "2024-09-18",
+    "day_nubmer": 1,
+    "has_schedule": false
+  },
+  {
+    "id": 5,
+    "date": "2024-09-19",
+    "day_nubmer": 1,
+    "has_schedule": false
+  }
+]

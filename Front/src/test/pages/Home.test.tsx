@@ -1,14 +1,14 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import Home from "../../pages/Home";
-import schedulesData from "../../../data/schedules.json";
+import travelPlanData from "../../../data/travelPlan.json";
 import { MemoryRouter } from "react-router-dom"; // MemoryRouter 임포트
 
 describe("Home Component", () => {
   it("상단에 환영합니다 메세지가 표시된다", () => {
     render(
       <MemoryRouter>
-        <Home schedules={schedulesData} />
+        <Home schedules={travelPlanData} />
       </MemoryRouter>
     );
     const welcomeMessage = screen.getByText(/환영합니다!/);
@@ -18,7 +18,7 @@ describe("Home Component", () => {
   it("일정 추가 버튼이 표시된다", () => {
     render(
       <MemoryRouter>
-        <Home schedules={schedulesData} />
+        <Home schedules={travelPlanData} />
       </MemoryRouter>
     );
     const addButton = screen.getByText("일정 추가");

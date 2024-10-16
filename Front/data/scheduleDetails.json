@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "date": "2024-09-15",
+    "day_number": 1,
+    "schedule_details": [
+      {
+        "id": 1234,
+        "sequence": 1,
+        "place_id": 12345,
+        "place_name": "장소 이름1",
+        "place_category": "장소 카테고리"
+      },
+      {
+        "id": 234,
+        "sequence": 1,
+        "place_id": 12345,
+        "place_name": "장소 이름2",
+        "place_category": "장소 카테고리"
+      },
+      {
+        "id": 345,
+        "sequence": 1,
+        "place_id": 12345,
+        "place_name": "장소 이름3",
+        "place_category": "장소 카테고리"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "date": "2024-09-16",
+    "day_number": 1,
+    "schedule_details": []
+  },
+  {
+    "id": 3,
+    "date": "2024-09-17",
+    "day_nubmer": 1,
+    "schedule_details": [
+      {
+        "id": 1234,
+        "sequence": 1,
+        "place_id": 12345,
+        "place_name": "장소 이름1",
+        "place_category": "장소 카테고리"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "date": "2024-09-18",
+    "day_nubmer": 1,
+    "schedule_details": []
+  },
+  {
+    "id": 5,
+    "date": "2024-09-19",
+    "day_nubmer": 1,
+    "schedule_details": []
+  }
+]

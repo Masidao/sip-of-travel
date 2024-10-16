@@ -10,7 +10,7 @@ import useTravelStore from "../stores/useTravelStore";
 export interface City {
   id: number;
   name: string;
-  img: string;
+  city_image: string;
 }
 
 const Cities: React.FC = () => {
@@ -18,7 +18,9 @@ const Cities: React.FC = () => {
   const [searchCity, setSearchCity] = useState("");
   const { selectedCities, addCity, removeCity } = useTravelStore();
 
-  const filteredCities = citiesList.filter((city) => city.name.includes(searchCity));
+  const filteredCities = citiesList.filter((city) =>
+    city.name.includes(searchCity)
+  );
 
   const handleSelectCity = (city: City) => {
     if (!selectedCities.some((selectedCity) => selectedCity.id === city.id)) {
@@ -40,12 +42,12 @@ const Cities: React.FC = () => {
           />
         </Header>
         <S.ScrollArea>
-          {filteredCities.map(({ id, name, img }) => (
+          {filteredCities.map(({ id, name, city_image }) => (
             <S.Item
               key={id}
-              onClick={() => handleSelectCity({ id, name, img })}
+              onClick={() => handleSelectCity({ id, name, city_image })}
             >
-              <S.Image src={`img/${img}`} alt={name} />
+              <S.Image src={`img/${city_image}`} alt={name} />
               <S.Title>{name}</S.Title>
             </S.Item>
           ))}
@@ -53,12 +55,12 @@ const Cities: React.FC = () => {
         <Footer>
           <div>
             <S.SelectedCitiesArea $isempty={selectedCities.length === 0}>
-              {selectedCities.map(({ id, name, img }) => (
+              {selectedCities.map(({ id, name, city_image }) => (
                 <S.SelectedCity key={id}>
                   <S.RemoveButton onClick={() => handleRemoveCity(id)}>
                     ×
                   </S.RemoveButton>
-                  <S.SelectedCityImage src={`/img/${img}`} alt={name} />
+                  <S.SelectedCityImage src={`/img/${city_image}`} alt={name} />
                   <S.SelectedCityName>{name}</S.SelectedCityName>
                 </S.SelectedCity>
               ))}
