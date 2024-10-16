@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface PlaceGroupRepository extends JpaRepository<PlaceGroup, Long> {
+public interface PlaceGroupRepository extends JpaRepository<PlaceGroup, Long>, PlaceGroupRepositoryCustom {
 
     List<PlaceGroupResponse> findAllByTravelPlanId(Long travelPlanId);
 }

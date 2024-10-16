@@ -22,8 +22,7 @@ public class PlaceGroupService {
     }
 
     public PlaceGroupDetailResponse getPlaceGroupDetails(Long placeGroupId) {
-        PlaceGroup placeGroup = placeGroupRepository.findById(placeGroupId)
-                .orElseThrow(() -> new RuntimeException("PlaceGroup not found"));
+        PlaceGroup placeGroup = placeGroupRepository.findPlaceGroupWithPlacesById(placeGroupId);
 
         return new PlaceGroupDetailResponse(placeGroup.getName(),
                 placeGroup.getPlaces().stream()
