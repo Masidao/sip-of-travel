@@ -5,6 +5,7 @@ import travelPlanData from "../../data/travelPlan.json";
 import Cities from "../pages/Cities";
 import Dates from "../pages/Dates";
 import TravelPlan from "../pages/TravelPlan";
+import TravelPlanContent from "../components/travelPlan/TravelPlanContent";
 
 const routes = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const routes = createBrowserRouter([
     path: "/travel_plans/:travelPlanId",
     element: <TravelPlan />,
     children: [
+      {
+        index: true, // 기본 경로로 설정
+        element: <TravelPlanContent />,
+      },
       // {
       //   path: "place_groups",
       //   element: <PlaceGroups />,

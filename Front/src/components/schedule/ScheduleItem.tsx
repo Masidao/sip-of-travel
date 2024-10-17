@@ -1,4 +1,3 @@
-import { FC } from "react";
 import * as S from "../../styles/schedule.style";
 import ChevronIcon from "../../assets/ChevronIcon";
 import { AddScheduleButton } from "../../styles/button.style";
@@ -13,18 +12,9 @@ interface ScheduleItemProps {
   onClickChevron: (id: number) => void;
 }
 
-const ScheduleItem: FC<ScheduleItemProps> = ({
-  id,
-  date,
-  hasSchedule,
-  isOpen,
-  onClickChevron,
-}) => {
-  const getScheduleDetails = (id: number) => {
-    return (
-      scheduleDetails.find((detail) => detail.id === id)?.schedule_details || []
-    );
-  };
+const ScheduleItem = ({ id, date, hasSchedule, isOpen, onClickChevron }: ScheduleItemProps) => {
+  const getScheduleDetails = (id: number) =>
+    scheduleDetails.find((detail) => detail.id === id)?.schedule_details || [];
 
   return (
     <S.Schedule>
