@@ -11,6 +11,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RequiredArgsConstructor
 public class KakaoMapService {
 
+    public static final int DEFAULT_PAGE = 1;
+    public static final int DEFAULT_SIZE = 15;
+
     private final RestClient restClient;
 
     @Value(value = "${kakao.api.key}")
@@ -22,11 +25,12 @@ public class KakaoMapService {
     public KakaoMapService() {
         this.restClient = RestClient.create();
     }
-// id, place_name, category_name, x, y
 
     public KakaoPlaceSearchResponse searchPlaces(String keyword) {
         String url = UriComponentsBuilder.fromHttpUrl(KAKAO_MAP_API_SERACH_PLACE_URL)
                 .queryParam("query", keyword)
+                .queryParam("page", DEFAULT_PAGE)
+                .queryParam("size", DEFAULT_SIZE)
                 .build()
                 .toString();
 
