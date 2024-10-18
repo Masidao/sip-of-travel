@@ -5,6 +5,7 @@ import travelPlanData from "../../data/travelPlan.json";
 import Cities from "../pages/Cities";
 import Dates from "../pages/Dates";
 import TravelPlan from "../pages/TravelPlan";
+import PlaceGroups from "../components/placeGroups/PlaceGroups";
 import TravelPlanContent from "../components/travelPlan/TravelPlanContent";
 
 const routes = createBrowserRouter([
@@ -32,16 +33,12 @@ const routes = createBrowserRouter([
         index: true, // 기본 경로로 설정
         element: <TravelPlanContent />,
       },
-      // {
-      //   path: "place_groups",
-      //   element: <PlaceGroups />,
-      // },
+      {
+        path: "place_groups/:groupId",
+        element: <PlaceGroups />,
+      },
     ],
   },
-  // {
-  //   path: "/place_groups/:groupId",
-  //   element: <PlaceGroupDetail />,
-  // },
   // {
   //   path: "/schedules/:dailyScheduleId/places",
   //   element: <Places />,

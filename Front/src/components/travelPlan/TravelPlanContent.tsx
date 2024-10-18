@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import * as S from "../../styles/travelPlan.style";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import scheduleList from "../../../data/scheduleList.json";
 import travelPlanData from "../../../data/travelPlan.json";
 import BasicMap from "../map/BasicMap";
@@ -14,6 +14,13 @@ const TravelPlanContent: FC = () => {
   const [openSchedules, setOpenSchedules] = useState<{
     [key: number]: boolean;
   }>({});
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handlePlaceGroups = (groupId: number) => {
+    navigate(`${location.pathname}/place_groups/${groupId}`);
+  };
 
   const travelPlan = travelPlanData.find(
     (plan) => plan.id === Number(travelPlanId)
@@ -33,11 +40,11 @@ const TravelPlanContent: FC = () => {
         <BasicMap lat={lat} lng={lng} level={level} />
       </S.MapBox>
       <S.Group>
-        <GroupButton>
+        <GroupButton onClick={() => handlePlaceGroups(1)}>
           <StarsIcon />
           기본 그룹
         </GroupButton>
-        <GroupButton>
+        <GroupButton onClick={() => handlePlaceGroups(2)}>
           <StarsIcon />
           음식점 그룹
         </GroupButton>
