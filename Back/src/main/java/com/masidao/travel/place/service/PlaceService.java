@@ -14,8 +14,10 @@ public class PlaceService {
 
     private final KakaoMapService kakaoMapService;
 
-    public List<PlaceSearchResponse> searchPlaces(String keyword) {
-        KakaoPlaceSearchResponse kakaoPlaceSearchResponse = kakaoMapService.searchPlaces(keyword);
+    public List<PlaceSearchResponse> searchPlaces(String keyword, Integer page, Integer size) {
+        KakaoPlaceSearchResponse kakaoPlaceSearchResponse = kakaoMapService.searchPlaces(keyword,
+                page == null ? KakaoMapService.DEFAULT_PAGE : page,
+                size == null ? KakaoMapService.DEFAULT_SIZE : size);
 
         List<PlaceSearchResponse> response = kakaoPlaceSearchResponse.documents().stream()
                 .map(document -> PlaceSearchResponse.builder()

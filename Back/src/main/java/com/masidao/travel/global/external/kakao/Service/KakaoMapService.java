@@ -26,11 +26,11 @@ public class KakaoMapService {
         this.restClient = RestClient.create();
     }
 
-    public KakaoPlaceSearchResponse searchPlaces(String keyword) {
+    public KakaoPlaceSearchResponse searchPlaces(String keyword, int page, int size) {
         String url = UriComponentsBuilder.fromHttpUrl(KAKAO_MAP_API_SERACH_PLACE_URL)
                 .queryParam("query", keyword)
-                .queryParam("page", DEFAULT_PAGE)
-                .queryParam("size", DEFAULT_SIZE)
+                .queryParam("page", page)
+                .queryParam("size", size)
                 .build()
                 .toString();
 
