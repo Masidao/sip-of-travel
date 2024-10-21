@@ -43,12 +43,16 @@ CREATE TABLE place_groups (
 
 CREATE TABLE places (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    kakao_place_id INT NOT NULL,
     name VARCHAR(100) NOT NULL,
     address VARCHAR(255) NOT NULL,
     category VARCHAR(20) NOT NULL,
     latitude FLOAT NOT NULL,
-    longitude FLOAT NOT NULL
+    longitude FLOAT NOT NULL,
+    UNIQUE (kakao_place_id),
+    INDEX idx_kakaoplace_id (kakao_place_id) -- UNIQUE 인덱스 추가
 );
+
 
 CREATE TABLE place_groups_places (
     id INT AUTO_INCREMENT PRIMARY KEY,

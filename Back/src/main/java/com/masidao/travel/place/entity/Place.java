@@ -22,6 +22,9 @@ public class Place {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, unique = true)
+    private Long kakaoPlaceId;
+
     @Column(nullable = false, length = 100)
     private String name;
 
