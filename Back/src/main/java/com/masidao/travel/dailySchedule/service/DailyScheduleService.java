@@ -26,34 +26,49 @@ public class DailyScheduleService {
 
     @Transactional
     public DailyScheduleResponse addPlacesToSchedule(Long dailyScheduleId, DailyScheduleAddPlaceRequest request) {
+        // TODO: 중복 장소 체크, 캐싱
         DailySchedule dailySchedule = dailyScheduleRepository.findById(dailyScheduleId)
                 .orElseThrow(() -> new RuntimeException("일정을 찾을 수 없습니다."));
 
-        List<Place> places = placeRepository.findAllById(request.placesIds());
+        List<DailyScheduleDetail> existingDetails = dailyScheduleDetailRepository.findByDailyScheduleIdOrderBySequenceAsc(dailyScheduleId);
+        List<Long> existedPlaceIds = existingDetails.stream()
+                .map(detail -> detail.getPlace().getId())
+                .toList();
 
-        int lastSequence = dailyScheduleDetailRepository.countByDailyScheduleId(dailyScheduleId);
+        List<Place> newPlaces = placeRepository.findAllById(request.placesIds()).stream()
+                .filter(place -> !existedPlaceIds.contains(place.getId()))
+                .toList();
+
+        int lastSequence = existingDetails.size();
         List<DailyScheduleDetail> detailsToSave = new ArrayList<>();
 
-        for (Place place : places) {
+        for (Place place : newPlaces) {
             DailyScheduleDetail detail = DailyScheduleDetail.builder()
                     .dailySchedule(dailySchedule)
                     .place(place)
                     .sequence(++lastSequence)
                     .build();
             detailsToSave.add(detail);
-
-
         }
         dailyScheduleDetailRepository.saveAll(detailsToSave);
 
-        List<DailyScheduleDetail> allDetails = dailyScheduleDetailRepository.findByDailyScheduleIdOrderBySequenceAsc(dailyScheduleId);
-        List<DailyScheduleDetailResponse> detailResponses = allDetails.stream()
+        List<DailyScheduleDetailResponse> detailResponses = new ArrayList<>();
+
+        detailResponses.addAll(existingDetails.stream()
                 .map(detail -> DailyScheduleDetailResponse.builder()
                         .id(detail.getId())
                         .placeId(detail.getPlace().getId())
                         .sequence(detail.getSequence())
                         .build())
-                .toList();
+                .toList());
+
+        detailResponses.addAll(detailsToSave.stream()
+                .map(detail -> DailyScheduleDetailResponse.builder()
+                        .id(detail.getId())
+                        .placeId(detail.getPlace().getId())
+                        .sequence(detail.getSequence())
+                        .build())
+                .toList());
 
         return DailyScheduleResponse.builder()
                 .id(dailySchedule.getId())
