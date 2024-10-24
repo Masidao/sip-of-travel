@@ -33,7 +33,6 @@ public class DailyScheduleService {
 
         int lastSequence = dailyScheduleDetailRepository.countByDailyScheduleId(dailyScheduleId);
         List<DailyScheduleDetail> detailsToSave = new ArrayList<>();
-        List<DailyScheduleDetailResponse> detailResponses = new ArrayList<>();
 
         for (Place place : places) {
             DailyScheduleDetail detail = DailyScheduleDetail.builder()
@@ -43,13 +42,17 @@ public class DailyScheduleService {
                     .build();
             detailsToSave.add(detail);
 
-            detailResponses.add(DailyScheduleDetailResponse.builder()
-                    .id(detail.getId())
-                    .placeId(place.getId())
-                    .sequence(detail.getSequence())
-                    .build());
+
         }
-        dailyScheduleDetailRepository.saveAll(detailsToSave);
+        List<DailyScheduleDetail> dailyScheduleDetails = dailyScheduleDetailRepository.saveAll(detailsToSave);
+
+        List<DailyScheduleDetailResponse> detailResponses = dailyScheduleDetails.stream()
+                .map(detail -> DailyScheduleDetailResponse.builder()
+                        .id(detail.getId())
+                        .placeId(detail.getPlace().getId())
+                        .sequence(detail.getSequence())
+                        .build())
+                .toList();
 
         return DailyScheduleResponse.builder()
                 .id(dailySchedule.getId())
