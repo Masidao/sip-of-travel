@@ -44,9 +44,10 @@ public class DailyScheduleService {
 
 
         }
-        List<DailyScheduleDetail> dailyScheduleDetails = dailyScheduleDetailRepository.saveAll(detailsToSave);
+        dailyScheduleDetailRepository.saveAll(detailsToSave);
 
-        List<DailyScheduleDetailResponse> detailResponses = dailyScheduleDetails.stream()
+        List<DailyScheduleDetail> allDetails = dailyScheduleDetailRepository.findByDailyScheduleIdOrderBySequenceAsc(dailyScheduleId);
+        List<DailyScheduleDetailResponse> detailResponses = allDetails.stream()
                 .map(detail -> DailyScheduleDetailResponse.builder()
                         .id(detail.getId())
                         .placeId(detail.getPlace().getId())
