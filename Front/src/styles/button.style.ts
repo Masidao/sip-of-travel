@@ -29,7 +29,6 @@ export const GroupButton = styled(CommonButton)`
   color: black;
   gap: 10px;
   border: 1px solid #e0e0e0;
-  margin: 1rem;
   padding: 0;
 `;
 
@@ -39,4 +38,11 @@ export const AddScheduleButton = styled(CommonButton)`
   color: black;
   border: 1px solid #e0e0e0;
   padding: 11px;
+`;
+
+export const SelectedButton = styled(CommonButton)<{ checked: boolean }>`
+  width: 100px;
+  padding: 11px 20px;
+  color: ${(props) => (props.checked ? "#fafafa" : "#333")};
+  background-color: ${(props) => (props.checked ? "#0070f3" : "#fafafa")};
 `;

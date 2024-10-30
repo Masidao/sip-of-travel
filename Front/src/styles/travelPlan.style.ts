@@ -21,6 +21,8 @@ export const MapBox = styled.div`
 
 export const Group = styled.div`
   display: flex;
+  margin-top: 2rem;
+  gap: 1rem;
 `;
 
 export const Schedules = styled.div`

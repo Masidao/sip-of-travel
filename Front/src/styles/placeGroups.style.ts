@@ -11,7 +11,6 @@ export const PlaceItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
   padding: 1rem;
   border-bottom: 1px solid #e0e0e0;
 `;
@@ -19,16 +18,17 @@ export const PlaceItem = styled.div`
 export const ItemHeader = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 20px;
 `;
 
 export const ItemTitle = styled.div`
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 `;
 
 export const ItemCategory = styled.div`
+  margin-top: 5px;
   font-size: 1rem;
-  color: #e0e0e0;
+  color: #b0b0b0;
 `;
 
 export const Message = styled.div`

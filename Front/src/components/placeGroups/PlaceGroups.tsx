@@ -5,7 +5,6 @@ import { useState } from "react";
 import placeGroup1 from "../../../data/placeGroup1.json";
 import placeGroup2 from "../../../data/placeGroup2.json";
 import StarsIcon from "../../assets/StarsIcon";
-import { Button } from "../Button";
 
 interface Place {
   id: number;
@@ -29,7 +28,7 @@ const PlaceGroups = () => {
   };
 
   const groupData = groupDataMap[Number(groupId)];
-  const groupName = groupData?.name || "Unknown Group";
+  const groupName = groupData?.name;
   // 나중엔 /api/place_groups/{place_groups_id} GET 요청
 
   const filteredPlaces = groupData.places.filter((place) =>
@@ -54,7 +53,6 @@ const PlaceGroups = () => {
                   <S.ItemCategory>{category}</S.ItemCategory>
                 </div>
               </S.ItemHeader>
-              <Button />
             </S.PlaceItem>
           ))
         ) : (
