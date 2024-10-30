@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Places = styled.div`
-  height: 75vh;
+  height: 68vh;
   overflow-y: auto;
   border: 1px solid #e0e0e0;
   border-radius: 10px;

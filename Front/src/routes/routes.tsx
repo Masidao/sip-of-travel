@@ -35,7 +35,11 @@ const routes = createBrowserRouter([
       },
       {
         path: "place_groups/:groupId",
-        element: <PlaceGroups />,
+        element: <PlaceGroups mode="group" />,
+      },
+      {
+        path: "schedules/:dailyScheduleId",
+        element: <PlaceGroups mode="schedule" />,
       },
     ],
   },
