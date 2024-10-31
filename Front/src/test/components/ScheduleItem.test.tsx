@@ -2,19 +2,22 @@ import { render, screen } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import ScheduleItem from "../../components/schedule/ScheduleItem";
 import scheduleDetails from "../../../data/scheduleDetails.json";
+import { MemoryRouter } from "react-router-dom";
 
 describe("ScheduleItem Component", () => {
   const mockOnClickChevron = vi.fn();
 
   it("일정이 올바르게 표시된다", () => {
     render(
-      <ScheduleItem
-        id={1}
-        date="2024-09-15"
-        hasSchedule={true}
-        isOpen={false}
-        onClickChevron={mockOnClickChevron}
-      />
+      <MemoryRouter>
+        <ScheduleItem
+          id={1}
+          date="2024-09-15"
+          hasSchedule={true}
+          isOpen={false}
+          onClickChevron={mockOnClickChevron}
+        />
+      </MemoryRouter>
     );
 
     expect(screen.getByText("Day 1")).toBeInTheDocument();
@@ -23,13 +26,15 @@ describe("ScheduleItem Component", () => {
 
   it("아이콘이 클릭되면 해당 세부 일정이 표시된다", () => {
     render(
-      <ScheduleItem
-        id={1}
-        date="2024-09-15"
-        hasSchedule={true}
-        isOpen={true}
-        onClickChevron={mockOnClickChevron}
-      />
+      <MemoryRouter>
+        <ScheduleItem
+          id={1}
+          date="2024-09-15"
+          hasSchedule={true}
+          isOpen={true}
+          onClickChevron={mockOnClickChevron}
+        />
+      </MemoryRouter>
     );
 
     const scheduleDetail = scheduleDetails.find((detail) => detail.id === 1)
