@@ -6,7 +6,11 @@ import placeGroup1 from "../../../data/placeGroup1.json";
 import placeGroup2 from "../../../data/placeGroup2.json";
 import StarsIcon from "../../assets/StarsIcon";
 import usePlaceStore from "../../stores/usePlaceStore";
-import { SelectedButton, ToggleButton } from "../../styles/button.style";
+import {
+  AddButton,
+  SelectedButton,
+  ToggleButton,
+} from "../../styles/button.style";
 import { Footer } from "../../styles/layout.style";
 
 interface Place {
@@ -98,16 +102,18 @@ const PlaceGroups = ({ mode }: PlaceGroupsProps) => {
           <S.Message>장소를 추가해주세요</S.Message>
         )}
       </S.Places>
-      {mode === "schedule" && (
-        <Footer>
+      <Footer>
+        {mode === "group" ? (
+          <AddButton>새로운 장소 추가하기</AddButton>
+        ) : (
           <ToggleButton
             onClick={handleSave}
             disabled={selectedPlaces.length === 0}
           >
             장소 저장하기
           </ToggleButton>
-        </Footer>
-      )}
+        )}
+      </Footer>
     </>
   );
 };
