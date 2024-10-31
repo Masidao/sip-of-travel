@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import * as S from "../../styles/placeGroups.style";
 import SearchBox from "../searchBox/SearchBox";
 import { useState } from "react";
@@ -28,7 +28,9 @@ interface PlaceGroupsProps {
 const PlaceGroups = ({ mode }: PlaceGroupsProps) => {
   const { groupId, dailyScheduleId } = useParams();
   const [searchPlace, setSearchPlace] = useState("");
-  const { selectedPlaces, addPlace, removePlace } = usePlaceStore();
+  const { selectedPlacesBySchedule, addPlace, removePlace } = usePlaceStore();
+
+  const navigate = useNavigate();
 
   const groupDataMap: { [key: string]: GroupData } = {
     1: placeGroup1,
@@ -45,20 +47,23 @@ const PlaceGroups = ({ mode }: PlaceGroupsProps) => {
     place.name.includes(searchPlace)
   );
 
+  const selectedPlaces = selectedPlacesBySchedule[dailyScheduleId || ""] || [];
+
   const isPlaceSelected = (placeId: number) =>
     selectedPlaces.some((selectedPlace) => selectedPlace.id === placeId);
 
   const handlePlaceToggle = (place: Place) => {
     if (isPlaceSelected(place.id)) {
-      removePlace(place.id);
+      removePlace(dailyScheduleId || "", place.id);
     } else {
-      addPlace(place);
+      addPlace(dailyScheduleId || "", place);
     }
   };
 
   const handleSave = () => {
     console.log(`${dailyScheduleId}:`, selectedPlaces);
     // 나중엔 /api/schedules/{daily_schedule_id}/places POST
+    navigate(-1);
   };
 
   return (

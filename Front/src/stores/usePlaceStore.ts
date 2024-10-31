@@ -7,24 +7,31 @@ interface Place {
 }
 
 interface PlaceStore {
-  selectedPlaces: Place[];
-  addPlace: (place: Place) => void;
-  removePlace: (placeId: number) => void;
+  selectedPlacesBySchedule: { [key: string]: Place[] };
+  addPlace: (scheduleId: string, place: Place) => void;
+  removePlace: (scheduleId: string, placeId: number) => void;
 }
 
 const usePlaceStore = create<PlaceStore>((set) => ({
-  selectedPlaces: [],
-  addPlace: (place: Place) =>
+  selectedPlacesBySchedule: {},
+  addPlace: (scheduleId, place) =>
     set((state) => ({
-      selectedPlaces: state.selectedPlaces.some((p) => p.id === place.id)
-        ? state.selectedPlaces
-        : [...state.selectedPlaces, place],
+      selectedPlacesBySchedule: {
+        ...state.selectedPlacesBySchedule,
+        [scheduleId]: [
+          ...(state.selectedPlacesBySchedule[scheduleId] || []),
+          place,
+        ],
+      },
     })),
-  removePlace: (placeId: number) =>
+  removePlace: (scheduleId, placeId) =>
     set((state) => ({
-      selectedPlaces: state.selectedPlaces.filter(
-        (place) => place.id !== placeId
-      ),
+      selectedPlacesBySchedule: {
+        ...state.selectedPlacesBySchedule,
+        [scheduleId]: (state.selectedPlacesBySchedule[scheduleId] || []).filter(
+          (p) => p.id !== placeId
+        ),
+      },
     })),
 }));
 
