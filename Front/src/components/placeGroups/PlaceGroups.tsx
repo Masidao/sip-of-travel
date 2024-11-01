@@ -51,16 +51,16 @@ const PlaceGroups = ({ mode }: PlaceGroupsProps) => {
     place.name.includes(searchPlace)
   );
 
-  const selectedPlaces = selectedPlacesBySchedule[dailyScheduleId || ""] || [];
+  const selectedPlaces = selectedPlacesBySchedule[dailyScheduleId ?? ""] || [];
 
   const isPlaceSelected = (placeId: number) =>
     selectedPlaces.some((selectedPlace) => selectedPlace.id === placeId);
 
   const handlePlaceToggle = (place: Place) => {
     if (isPlaceSelected(place.id)) {
-      removePlace(dailyScheduleId || "", place.id);
+      removePlace(dailyScheduleId ?? "", place.id);
     } else {
-      addPlace(dailyScheduleId || "", place);
+      addPlace(dailyScheduleId ?? "", place);
     }
   };
 
