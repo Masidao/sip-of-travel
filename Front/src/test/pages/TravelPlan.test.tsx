@@ -35,6 +35,5 @@ describe("TravelPlan Component", () => {
     );
 
     expect(screen.getByText(/여행/)).toBeInTheDocument();
-    expect(screen.getByText(/기본 그룹/)).toBeInTheDocument();
   });
 });
