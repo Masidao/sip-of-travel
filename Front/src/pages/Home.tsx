@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "../styles/home.style";
 import { Link, useNavigate } from "react-router-dom";
-import { Footer, Header, Container, Wrapper } from "../styles/layout.style";
+import { Footer, Header, Container, Wrapper, ScrollArea } from "../styles/layout.style";
 import { AddButton } from "../styles/button.style";
 import { getCityName } from "../utils/getCityData";
 
@@ -28,7 +28,7 @@ const Home: React.FC<HomeProps> = ({ schedules }) => {
         <Header>
           <S.Title>{user}님 환영합니다!</S.Title>
         </Header>
-        <S.ScrollArea>
+        <ScrollArea>
           {schedules.length > 0 ? (
             schedules.map(({ id, city_id, start_date, end_date }) => (
               <S.ScheduleItem key={id}>
@@ -46,7 +46,7 @@ const Home: React.FC<HomeProps> = ({ schedules }) => {
           ) : (
             <S.Message>일정을 추가해주세요.</S.Message>
           )}
-        </S.ScrollArea>
+        </ScrollArea>
         <Footer>
           <AddButton onClick={handleAddSchedule}>일정 추가</AddButton>
         </Footer>

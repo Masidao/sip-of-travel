@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as S from "../styles/cities.style";
 import { useNavigate } from "react-router-dom";
 import citiesList from "../../data/citiesList.json";
-import { Footer, Header, Container, Wrapper } from "../styles/layout.style";
+import { Footer, Header, Container, Wrapper, ScrollArea } from "../styles/layout.style";
 import { ToggleButton } from "../styles/button.style";
 import SearchBox from "../components/searchBox/SearchBox";
 import useTravelStore from "../stores/useTravelStore";
@@ -41,7 +41,7 @@ const Cities: React.FC = () => {
             onChange={(e) => setSearchCity(e.target.value)}
           />
         </Header>
-        <S.ScrollArea>
+        <ScrollArea>
           {filteredCities.map(({ id, name, city_image }) => (
             <S.Item
               key={id}
@@ -51,7 +51,7 @@ const Cities: React.FC = () => {
               <S.Title>{name}</S.Title>
             </S.Item>
           ))}
-        </S.ScrollArea>
+        </ScrollArea>
         <Footer>
           <div>
             <S.SelectedCitiesArea $isempty={selectedCities.length === 0}>
