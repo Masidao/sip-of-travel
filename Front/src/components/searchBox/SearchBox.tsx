@@ -6,12 +6,14 @@ interface SearchBoxProps {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
+  onIconClick?: () => void;
 }
 
 const SearchBox: React.FC<SearchBoxProps> = ({
   placeholder,
   value,
   onChange,
+  onIconClick,
 }) => {
   return (
     <SearchBoxWrapper>
@@ -21,7 +23,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
         value={value}
         onChange={onChange}
       />
-      <StyledSearchIcon />
+      <StyledSearchIcon onClick={onIconClick} />
     </SearchBoxWrapper>
   );
 };
