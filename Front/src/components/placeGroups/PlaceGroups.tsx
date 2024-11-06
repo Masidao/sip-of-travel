@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import * as S from "../../styles/placeGroups.style";
 import SearchBox from "../searchBox/SearchBox";
 import { useState } from "react";
@@ -30,7 +30,7 @@ interface PlaceGroupsProps {
 }
 
 const PlaceGroups = ({ mode }: PlaceGroupsProps) => {
-  const { groupId, dailyScheduleId } = useParams();
+  const { travelPlanId, groupId, dailyScheduleId } = useParams();
   const [searchPlace, setSearchPlace] = useState("");
   const { selectedPlacesBySchedule, addPlace, removePlace } = usePlaceStore();
 
@@ -70,6 +70,10 @@ const PlaceGroups = ({ mode }: PlaceGroupsProps) => {
     navigate(-1);
   };
 
+  const handleAddPlaces = () => {
+    navigate(`places`);
+  };
+
   return (
     <>
       <SearchBox
@@ -104,7 +108,7 @@ const PlaceGroups = ({ mode }: PlaceGroupsProps) => {
       </S.Places>
       <Footer>
         {mode === "group" ? (
-          <AddButton>새로운 장소 추가하기</AddButton>
+          <AddButton onClick={handleAddPlaces}>새로운 장소 추가하기</AddButton>
         ) : (
           <ToggleButton
             onClick={handleSave}

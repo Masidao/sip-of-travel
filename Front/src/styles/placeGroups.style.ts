@@ -27,7 +27,6 @@ export const ItemTitle = styled.div`
 
 export const ItemCategory = styled.div`
   margin-top: 5px;
-  font-size: 1rem;
   color: #b0b0b0;
 `;
 
