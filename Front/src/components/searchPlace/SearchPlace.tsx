@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import SearchBox from "../searchBox/SearchBox";
 import { Footer } from "../../styles/layout.style";
 import { SelectedButton, ToggleButton } from "../../styles/button.style";
 import * as S from "../../styles/searchPlace.style";
+import { getCityMap } from "../../utils/getCityData";
 
 interface NewPlace {
   id: string;
@@ -16,6 +17,8 @@ const SearchPlace: React.FC = () => {
   const [places, setPlaces] = useState<NewPlace[]>([]);
   const [selectedPlaces, setSelectedPlaces] = useState<string[]>([]);
   const [isKakaoLoaded, setIsKakaoLoaded] = useState(false);
+  const city_id = useOutletContext<number>();
+  const { lat, lng } = getCityMap(city_id);
 
   const navigate = useNavigate();
 
@@ -29,14 +32,22 @@ const SearchPlace: React.FC = () => {
     if (!keyword || !isKakaoLoaded) return;
 
     const ps = new window.kakao.maps.services.Places();
-    ps.keywordSearch(keyword, (data: NewPlace[], status: string) => {
-      if (status === window.kakao.maps.services.Status.OK) {
-        setPlaces(data);
-      } else {
-        setPlaces([]);
-        console.warn("검색 결과가 없습니다.");
-      }
-    });
+    const options = {
+      location: new window.kakao.maps.LatLng(lat, lng),
+    };
+
+    ps.keywordSearch(
+      keyword,
+      (data: NewPlace[], status: string) => {
+        if (status === window.kakao.maps.services.Status.OK) {
+          setPlaces(data);
+        } else {
+          setPlaces([]);
+          console.warn("검색 결과가 없습니다.");
+        }
+      },
+      options
+    );
   };
 
   const isPlaceSelected = (id: string) => selectedPlaces.includes(id);

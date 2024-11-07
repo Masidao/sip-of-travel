@@ -8,7 +8,8 @@ interface Window {
         Places: new () => {
           keywordSearch: (
             keyword: string,
-            callback: (data: any, status: string, pagination: any) => void
+            callback: (data: any, status: string, pagination: any) => void,
+            options?: object
           ) => void;
         };
         Status: {
