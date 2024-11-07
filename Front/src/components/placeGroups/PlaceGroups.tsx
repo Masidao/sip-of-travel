@@ -1,4 +1,4 @@
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import * as S from "../../styles/placeGroups.style";
 import SearchBox from "../searchBox/SearchBox";
 import { useState } from "react";
@@ -30,7 +30,7 @@ interface PlaceGroupsProps {
 }
 
 const PlaceGroups = ({ mode }: PlaceGroupsProps) => {
-  const { travelPlanId, groupId, dailyScheduleId } = useParams();
+  const { groupId, dailyScheduleId } = useParams();
   const [searchPlace, setSearchPlace] = useState("");
   const { selectedPlacesBySchedule, addPlace, removePlace } = usePlaceStore();
 
