@@ -13,18 +13,14 @@ export const PlaceItem = styled.div`
   border-bottom: 1px solid #e0e0e0;
 `;
 
-export const ItemHeader = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 20px;
-`;
-
 export const ItemTitle = styled.div`
-  font-size: 1.3rem;
+  font-weight: 500;
+  font-size: 1.2rem;
+  padding-bottom: 10px;
 `;
 
-export const ItemCategory = styled.div`
-  margin-top: 5px;
+export const ItemAddress = styled.div`
+  font-size: 1rem;
   color: #b0b0b0;
 `;
 

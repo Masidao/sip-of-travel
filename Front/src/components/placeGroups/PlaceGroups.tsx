@@ -70,6 +70,10 @@ const PlaceGroups = ({ mode }: PlaceGroupsProps) => {
     navigate(-1);
   };
 
+  const handleAddPlaces = () => {
+    navigate(`places`);
+  };
+
   return (
     <>
       <SearchBox
@@ -104,7 +108,7 @@ const PlaceGroups = ({ mode }: PlaceGroupsProps) => {
       </S.Places>
       <Footer>
         {mode === "group" ? (
-          <AddButton>새로운 장소 추가하기</AddButton>
+          <AddButton onClick={handleAddPlaces}>새로운 장소 추가하기</AddButton>
         ) : (
           <ToggleButton
             onClick={handleSave}

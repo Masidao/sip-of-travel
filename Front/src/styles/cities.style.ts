@@ -1,12 +1,5 @@
 import styled from "styled-components";
 
-export const ScrollArea = styled.div`
-  height: 75vh;
-  overflow-y: auto;
-  border: 1px solid #e0e0e0;
-  border-radius: 10px;
-`;
-
 export const Item = styled.div`
   display: flex;
   align-items: center;

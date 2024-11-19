@@ -19,7 +19,6 @@ const TravelPlan: FC = () => {
   }
 
   const { city_id, start_date, end_date } = travelPlan;
-
   return (
     <Container>
       <Wrapper>
@@ -29,7 +28,7 @@ const TravelPlan: FC = () => {
             {start_date} ~ {end_date}
           </S.SubTitle>
         </S.PlanHeader>
-        <Outlet />
+        <Outlet context={city_id}/>
       </Wrapper>
     </Container>
   );

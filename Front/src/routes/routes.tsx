@@ -7,6 +7,7 @@ import Dates from "../pages/Dates";
 import TravelPlan from "../pages/TravelPlan";
 import PlaceGroups from "../components/placeGroups/PlaceGroups";
 import TravelPlanContent from "../components/travelPlan/TravelPlanContent";
+import SearchPlace from "../components/searchPlace/SearchPlace";
 
 const routes = createBrowserRouter([
   {
@@ -38,19 +39,15 @@ const routes = createBrowserRouter([
         element: <PlaceGroups mode="group" />,
       },
       {
+        path: "place_groups/:groupId/places",
+        element: <SearchPlace />,
+      },
+      {
         path: "schedules/:dailyScheduleId",
         element: <PlaceGroups mode="schedule" />,
       },
     ],
   },
-  // {
-  //   path: "/schedules/:dailyScheduleId/places",
-  //   element: <Places />,
-  // },
-  // {
-  //   path: "/place_groups/:groupId/places",
-  //   element: <Places />,
-  // },
 ]);
 
 export default routes;
